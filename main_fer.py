@@ -77,7 +77,7 @@ parser.add_argument('--cls', default=7, type=int, metavar='N',
 parser.add_argument('-j', '--workers', default=32, type=int, metavar='N',
                     help='number of data loading workers (default: 32)')
 parser.add_argument('--epochs', default=1, type=int, metavar='N',
-                    help='number of total epochs to run')
+                    help='number of total epochs to run')  # 100
 parser.add_argument('--start-epoch', default=0, type=int, metavar='N',
                     help='manual epoch number (useful on restarts)')
 parser.add_argument('-b', '--batch-size', default=256, type=int,
@@ -85,8 +85,8 @@ parser.add_argument('-b', '--batch-size', default=256, type=int,
                     help='mini-batch size (default: 256), this is the total '
                          'batch size of all GPUs on the current node when '
                          'using Data Parallel or Distributed Data Parallel')
-parser.add_argument('--optimizer', default="sgd", type=str, help='[sgd, adamw]')
-parser.add_argument('--lr', '--learning-rate', default=30., type=float,
+parser.add_argument('--optimizer', default="adamw", type=str, help='[sgd, adamw]')
+parser.add_argument('--lr', '--learning-rate', default=1.0, type=float,
                     metavar='LR', help='initial learning rate', dest='lr')
 parser.add_argument("--lr_head", default=0.02, type=float, help="initial learning rate - head")
 parser.add_argument('--min_lr', type=float, default=1e-6, metavar='LR',
@@ -95,7 +95,7 @@ parser.add_argument('--warmup_epochs', type=int, default=5, metavar='N',
                     help='epochs to warmup LR')
 parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
                     help='momentum')
-parser.add_argument('--wd', '--weight-decay', default=0., type=float,
+parser.add_argument('--wd', '--weight-decay', default=0.05, type=float,
                     metavar='W', help='weight decay (default: 0.)',
                     dest='weight_decay')
 parser.add_argument('--scheduler', default="cos", type=str, help='[cos, step, exp]')
@@ -105,8 +105,8 @@ parser.add_argument("--gamma", type=float, default=0.1, help="lr decay factor")
 
 parser.add_argument('--save-dir', default="ckpts",
                     help='checkpoint directory')
-parser.add_argument('-p', '--print-freq', default=100, type=int,
-                    metavar='N', help='print frequency (default: 10)')
+parser.add_argument('-p', '--print-freq', default=1, type=int,
+                    metavar='N', help='print frequency (default: 10)')  # 100
 parser.add_argument('--eval-freq', default=1, type=int,
                     metavar='N', help='evaluation epoch frequency (default: 1)')
 parser.add_argument('--resume', default='', type=str, metavar='PATH',
@@ -130,7 +130,7 @@ parser.add_argument('--multiprocessing_distributed', action='store_true',
                          'fastest way to use PyTorch for either single node or '
                          'multi node data parallel training')
 
-parser.add_argument('--pretrained', default='', type=str,
+parser.add_argument('--pretrained', default='ckpts/checkpoint.pth.tar', type=str,
                     help='path to self-supervised pretrained checkpoint')
 parser.add_argument('--model-prefix', default='encoder_q', type=str,
                     help='the model prefix of self-supervised pretrained state_dict')
@@ -575,3 +575,5 @@ if __name__ == '__main__':
 	print(opt)
 
 	main(opt)
+
+# nohup python main_fer.py > nohup_fer.logs &

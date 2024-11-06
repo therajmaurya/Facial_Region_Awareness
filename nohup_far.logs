@@ -1,0 +1,1244 @@
+/home/xt1/cs22mds15001/miniconda3/envs/fra/lib/python3.9/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+Will run the code on one GPU.
+Use GPU: 0 ranked 0 out of 1 gpus for training
+Namespace(dataset='celeba', data_root='data/FAR', trainindex=None, arch='resnet50', cls=40, workers=32, epochs=1, start_epoch=0, batch_size=256, optimizer='adamw', lr=2e-05, lr_head=0.02, min_lr=1e-06, warmup_epochs=5, momentum=0.9, weight_decay=0.0, scheduler='cos', decay_epochs=[60, 80], gamma=0.1, save_dir='ckpts', print_freq=1, eval_freq=1, resume='', evaluate=False, seed=None, world_size=1, rank=0, gpu=0, dist_backend='nccl', dist_url='env://', local_rank=0, multiprocessing_distributed=False, pretrained='ckpts/checkpoint.pth.tar', model_prefix='encoder_q', norm='None', amp=False, model_type='ours', image_size=224, data_norm='vggface2', finetune=False)
+Use GPU: 0 for training
+=> creating model 'resnet50'
+ResNet(
+  (conv1): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+  (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (relu): ReLU(inplace=True)
+  (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  (layer1): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (layer2): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (3): Bottleneck(
+      (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (layer3): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(512, 1024, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (3): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (4): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (5): Bottleneck(
+      (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (layer4): Sequential(
+    (0): Bottleneck(
+      (conv1): Conv2d(1024, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (downsample): Sequential(
+        (0): Conv2d(1024, 2048, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): Bottleneck(
+      (conv1): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+    (2): Bottleneck(
+      (conv1): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+    )
+  )
+  (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+  (fc): AttNeck(
+    (stem): fc_block(
+      (fc): Linear(in_features=2048, out_features=512, bias=True)
+      (bn): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (dropout): Dropout(p=0.2, inplace=False)
+      (relu): ReLU(inplace=True)
+    )
+    (classifier): Sequential(
+      (0): fc_block(
+        (fc): Linear(in_features=512, out_features=256, bias=True)
+        (bn): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (dropout): Dropout(p=0.2, inplace=False)
+        (relu): ReLU(inplace=True)
+      )
+      (1): Linear(in_features=256, out_features=40, bias=True)
+    )
+  )
+)/home/xt1/cs22mds15031/Facial_Region_Awareness/main_far.py:231: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(args.pretrained, map_location="cpu")
+
+=> loading checkpoint 'ckpts/checkpoint.pth.tar'
+odict_keys([])
+missing keys:
+conv1.weight
+bn1.weight
+bn1.bias
+bn1.running_mean
+bn1.running_var
+layer1.0.conv1.weight
+layer1.0.bn1.weight
+layer1.0.bn1.bias
+layer1.0.bn1.running_mean
+layer1.0.bn1.running_var
+layer1.0.conv2.weight
+layer1.0.bn2.weight
+layer1.0.bn2.bias
+layer1.0.bn2.running_mean
+layer1.0.bn2.running_var
+layer1.0.conv3.weight
+layer1.0.bn3.weight
+layer1.0.bn3.bias
+layer1.0.bn3.running_mean
+layer1.0.bn3.running_var
+layer1.0.downsample.0.weight
+layer1.0.downsample.1.weight
+layer1.0.downsample.1.bias
+layer1.0.downsample.1.running_mean
+layer1.0.downsample.1.running_var
+layer1.1.conv1.weight
+layer1.1.bn1.weight
+layer1.1.bn1.bias
+layer1.1.bn1.running_mean
+layer1.1.bn1.running_var
+layer1.1.conv2.weight
+layer1.1.bn2.weight
+layer1.1.bn2.bias
+layer1.1.bn2.running_mean
+layer1.1.bn2.running_var
+layer1.1.conv3.weight
+layer1.1.bn3.weight
+layer1.1.bn3.bias
+layer1.1.bn3.running_mean
+layer1.1.bn3.running_var
+layer1.2.conv1.weight
+layer1.2.bn1.weight
+layer1.2.bn1.bias
+layer1.2.bn1.running_mean
+layer1.2.bn1.running_var
+layer1.2.conv2.weight
+layer1.2.bn2.weight
+layer1.2.bn2.bias
+layer1.2.bn2.running_mean
+layer1.2.bn2.running_var
+layer1.2.conv3.weight
+layer1.2.bn3.weight
+layer1.2.bn3.bias
+layer1.2.bn3.running_mean
+layer1.2.bn3.running_var
+layer2.0.conv1.weight
+layer2.0.bn1.weight
+layer2.0.bn1.bias
+layer2.0.bn1.running_mean
+layer2.0.bn1.running_var
+layer2.0.conv2.weight
+layer2.0.bn2.weight
+layer2.0.bn2.bias
+layer2.0.bn2.running_mean
+layer2.0.bn2.running_var
+layer2.0.conv3.weight
+layer2.0.bn3.weight
+layer2.0.bn3.bias
+layer2.0.bn3.running_mean
+layer2.0.bn3.running_var
+layer2.0.downsample.0.weight
+layer2.0.downsample.1.weight
+layer2.0.downsample.1.bias
+layer2.0.downsample.1.running_mean
+layer2.0.downsample.1.running_var
+layer2.1.conv1.weight
+layer2.1.bn1.weight
+layer2.1.bn1.bias
+layer2.1.bn1.running_mean
+layer2.1.bn1.running_var
+layer2.1.conv2.weight
+layer2.1.bn2.weight
+layer2.1.bn2.bias
+layer2.1.bn2.running_mean
+layer2.1.bn2.running_var
+layer2.1.conv3.weight
+layer2.1.bn3.weight
+layer2.1.bn3.bias
+layer2.1.bn3.running_mean
+layer2.1.bn3.running_var
+layer2.2.conv1.weight
+layer2.2.bn1.weight
+layer2.2.bn1.bias
+layer2.2.bn1.running_mean
+layer2.2.bn1.running_var
+layer2.2.conv2.weight
+layer2.2.bn2.weight
+layer2.2.bn2.bias
+layer2.2.bn2.running_mean
+layer2.2.bn2.running_var
+layer2.2.conv3.weight
+layer2.2.bn3.weight
+layer2.2.bn3.bias
+layer2.2.bn3.running_mean
+layer2.2.bn3.running_var
+layer2.3.conv1.weight
+layer2.3.bn1.weight
+layer2.3.bn1.bias
+layer2.3.bn1.running_mean
+layer2.3.bn1.running_var
+layer2.3.conv2.weight
+layer2.3.bn2.weight
+layer2.3.bn2.bias
+layer2.3.bn2.running_mean
+layer2.3.bn2.running_var
+layer2.3.conv3.weight
+layer2.3.bn3.weight
+layer2.3.bn3.bias
+layer2.3.bn3.running_mean
+layer2.3.bn3.running_var
+layer3.0.conv1.weight
+layer3.0.bn1.weight
+layer3.0.bn1.bias
+layer3.0.bn1.running_mean
+layer3.0.bn1.running_var
+layer3.0.conv2.weight
+layer3.0.bn2.weight
+layer3.0.bn2.bias
+layer3.0.bn2.running_mean
+layer3.0.bn2.running_var
+layer3.0.conv3.weight
+layer3.0.bn3.weight
+layer3.0.bn3.bias
+layer3.0.bn3.running_mean
+layer3.0.bn3.running_var
+layer3.0.downsample.0.weight
+layer3.0.downsample.1.weight
+layer3.0.downsample.1.bias
+layer3.0.downsample.1.running_mean
+layer3.0.downsample.1.running_var
+layer3.1.conv1.weight
+layer3.1.bn1.weight
+layer3.1.bn1.bias
+layer3.1.bn1.running_mean
+layer3.1.bn1.running_var
+layer3.1.conv2.weight
+layer3.1.bn2.weight
+layer3.1.bn2.bias
+layer3.1.bn2.running_mean
+layer3.1.bn2.running_var
+layer3.1.conv3.weight
+layer3.1.bn3.weight
+layer3.1.bn3.bias
+layer3.1.bn3.running_mean
+layer3.1.bn3.running_var
+layer3.2.conv1.weight
+layer3.2.bn1.weight
+layer3.2.bn1.bias
+layer3.2.bn1.running_mean
+layer3.2.bn1.running_var
+layer3.2.conv2.weight
+layer3.2.bn2.weight
+layer3.2.bn2.bias
+layer3.2.bn2.running_mean
+layer3.2.bn2.running_var
+layer3.2.conv3.weight
+layer3.2.bn3.weight
+layer3.2.bn3.bias
+layer3.2.bn3.running_mean
+layer3.2.bn3.running_var
+layer3.3.conv1.weight
+layer3.3.bn1.weight
+layer3.3.bn1.bias
+layer3.3.bn1.running_mean
+layer3.3.bn1.running_var
+layer3.3.conv2.weight
+layer3.3.bn2.weight
+layer3.3.bn2.bias
+layer3.3.bn2.running_mean
+layer3.3.bn2.running_var
+layer3.3.conv3.weight
+layer3.3.bn3.weight
+layer3.3.bn3.bias
+layer3.3.bn3.running_mean
+layer3.3.bn3.running_var
+layer3.4.conv1.weight
+layer3.4.bn1.weight
+layer3.4.bn1.bias
+layer3.4.bn1.running_mean
+layer3.4.bn1.running_var
+layer3.4.conv2.weight
+layer3.4.bn2.weight
+layer3.4.bn2.bias
+layer3.4.bn2.running_mean
+layer3.4.bn2.running_var
+layer3.4.conv3.weight
+layer3.4.bn3.weight
+layer3.4.bn3.bias
+layer3.4.bn3.running_mean
+layer3.4.bn3.running_var
+layer3.5.conv1.weight
+layer3.5.bn1.weight
+layer3.5.bn1.bias
+layer3.5.bn1.running_mean
+layer3.5.bn1.running_var
+layer3.5.conv2.weight
+layer3.5.bn2.weight
+layer3.5.bn2.bias
+layer3.5.bn2.running_mean
+layer3.5.bn2.running_var
+layer3.5.conv3.weight
+layer3.5.bn3.weight
+layer3.5.bn3.bias
+layer3.5.bn3.running_mean
+layer3.5.bn3.running_var
+layer4.0.conv1.weight
+layer4.0.bn1.weight
+layer4.0.bn1.bias
+layer4.0.bn1.running_mean
+layer4.0.bn1.running_var
+layer4.0.conv2.weight
+layer4.0.bn2.weight
+layer4.0.bn2.bias
+layer4.0.bn2.running_mean
+layer4.0.bn2.running_var
+layer4.0.conv3.weight
+layer4.0.bn3.weight
+layer4.0.bn3.bias
+layer4.0.bn3.running_mean
+layer4.0.bn3.running_var
+layer4.0.downsample.0.weight
+layer4.0.downsample.1.weight
+layer4.0.downsample.1.bias
+layer4.0.downsample.1.running_mean
+layer4.0.downsample.1.running_var
+layer4.1.conv1.weight
+layer4.1.bn1.weight
+layer4.1.bn1.bias
+layer4.1.bn1.running_mean
+layer4.1.bn1.running_var
+layer4.1.conv2.weight
+layer4.1.bn2.weight
+layer4.1.bn2.bias
+layer4.1.bn2.running_mean
+layer4.1.bn2.running_var
+layer4.1.conv3.weight
+layer4.1.bn3.weight
+layer4.1.bn3.bias
+layer4.1.bn3.running_mean
+layer4.1.bn3.running_var
+layer4.2.conv1.weight
+layer4.2.bn1.weight
+layer4.2.bn1.bias
+layer4.2.bn1.running_mean
+layer4.2.bn1.running_var
+layer4.2.conv2.weight
+layer4.2.bn2.weight
+layer4.2.bn2.bias
+layer4.2.bn2.running_mean
+layer4.2.bn2.running_var
+layer4.2.conv3.weight
+layer4.2.bn3.weight
+layer4.2.bn3.bias
+layer4.2.bn3.running_mean
+layer4.2.bn3.running_var
+fc.stem.fc.weight
+fc.stem.fc.bias
+fc.stem.bn.weight
+fc.stem.bn.bias
+fc.stem.bn.running_mean
+fc.stem.bn.running_var
+fc.classifier.0.fc.weight
+fc.classifier.0.fc.bias
+fc.classifier.0.bn.weight
+fc.classifier.0.bn.bias
+fc.classifier.0.bn.running_mean
+fc.classifier.0.bn.running_var
+fc.classifier.1.weight
+fc.classifier.1.bias
+=> loaded pre-trained model 'ckpts/checkpoint.pth.tar' (epoch 1)
+classifier params: ['fc.stem.fc.weight', 'fc.stem.fc.bias', 'fc.stem.bn.weight', 'fc.stem.bn.bias', 'fc.classifier.0.fc.weight', 'fc.classifier.0.fc.bias', 'fc.classifier.0.bn.weight', 'fc.classifier.0.bn.bias', 'fc.classifier.1.weight', 'fc.classifier.1.bias'] using lr 0.02
+the rest params using lr 2e-05
+Dataset CelebA
+    Number of datapoints: 162770
+    Root location: data/FAR
+    Target type: ['attr']
+    Split: train
+    StandardTransform
+Transform: Compose(
+               Resize(size=[224, 224], interpolation=bilinear, max_size=None, antialias=True)
+               RandomHorizontalFlip(p=0.5)
+               RandomApply(
+               p=0.5
+               ColorJitter(brightness=(0.5, 1.5), contrast=(0.5, 1.5), saturation=(0.5, 1.5), hue=None)
+           )
+               RandomApply(
+               p=0.5
+               RandomAffine(degrees=[0.0, 0.0], translate=(0.2, 0.2))
+           )
+               RandomApply(
+               p=0.5
+               RandomRotation(degrees=[-10.0, 10.0], interpolation=nearest, expand=False, fill=0)
+           )
+               ToTensor()
+               Normalize(mean=[0.5231, 0.4044, 0.3489], std=[0.2536, 0.2194, 0.207])
+           )
+Compose(
+    Resize(size=[224, 224], interpolation=bilinear, max_size=None, antialias=True)
+    RandomHorizontalFlip(p=0.5)
+    RandomApply(
+    p=0.5
+    ColorJitter(brightness=(0.5, 1.5), contrast=(0.5, 1.5), saturation=(0.5, 1.5), hue=None)
+)
+    RandomApply(
+    p=0.5
+    RandomAffine(degrees=[0.0, 0.0], translate=(0.2, 0.2))
+)
+    RandomApply(
+    p=0.5
+    RandomRotation(degrees=[-10.0, 10.0], interpolation=nearest, expand=False, fill=0)
+)
+    ToTensor()
+    Normalize(mean=[0.5231, 0.4044, 0.3489], std=[0.2536, 0.2194, 0.207])
+)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[  0/636]	Time 14.351 (14.351)	Data  3.977 ( 3.977)	Loss 7.1115e-01 (7.1115e-01)	Acc@1  50.48 ( 50.48)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[  1/636]	Time  0.635 ( 7.493)	Data  0.001 ( 1.989)	Loss 7.1053e-01 (7.1084e-01)	Acc@1  50.65 ( 50.57)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[  2/636]	Time  0.494 ( 5.160)	Data  0.000 ( 1.326)	Loss 7.1236e-01 (7.1135e-01)	Acc@1  50.70 ( 50.61)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[  3/636]	Time  0.495 ( 3.994)	Data  0.000 ( 0.995)	Loss 7.1013e-01 (7.1104e-01)	Acc@1  51.04 ( 50.72)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[  4/636]	Time  0.494 ( 3.294)	Data  0.000 ( 0.796)	Loss 7.0920e-01 (7.1068e-01)	Acc@1  51.48 ( 50.87)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[  5/636]	Time  0.495 ( 2.827)	Data  0.000 ( 0.663)	Loss 7.1058e-01 (7.1066e-01)	Acc@1  50.85 ( 50.87)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[  6/636]	Time  0.495 ( 2.494)	Data  0.000 ( 0.569)	Loss 7.0627e-01 (7.1003e-01)	Acc@1  50.88 ( 50.87)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[  7/636]	Time  0.495 ( 2.244)	Data  0.000 ( 0.497)	Loss 7.0151e-01 (7.0897e-01)	Acc@1  52.09 ( 51.02)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[  8/636]	Time  0.495 ( 2.050)	Data  0.001 ( 0.442)	Loss 6.9689e-01 (7.0763e-01)	Acc@1  52.96 ( 51.24)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[  9/636]	Time  0.494 ( 1.894)	Data  0.000 ( 0.398)	Loss 6.9746e-01 (7.0661e-01)	Acc@1  53.22 ( 51.44)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 10/636]	Time  0.495 ( 1.767)	Data  0.000 ( 0.362)	Loss 6.9876e-01 (7.0590e-01)	Acc@1  52.62 ( 51.54)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 11/636]	Time  0.495 ( 1.661)	Data  0.001 ( 0.332)	Loss 6.9274e-01 (7.0480e-01)	Acc@1  54.15 ( 51.76)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 12/636]	Time  0.495 ( 1.571)	Data  0.001 ( 0.306)	Loss 6.9142e-01 (7.0377e-01)	Acc@1  53.25 ( 51.88)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 13/636]	Time  0.494 ( 1.494)	Data  0.000 ( 0.284)	Loss 6.8989e-01 (7.0278e-01)	Acc@1  54.50 ( 52.06)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 14/636]	Time  0.496 ( 1.428)	Data  0.001 ( 0.266)	Loss 6.8607e-01 (7.0166e-01)	Acc@1  55.68 ( 52.30)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 15/636]	Time  0.495 ( 1.369)	Data  0.001 ( 0.249)	Loss 6.8437e-01 (7.0058e-01)	Acc@1  56.30 ( 52.55)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 16/636]	Time  0.495 ( 1.318)	Data  0.000 ( 0.234)	Loss 6.7973e-01 (6.9936e-01)	Acc@1  58.13 ( 52.88)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 17/636]	Time  0.495 ( 1.272)	Data  0.001 ( 0.221)	Loss 6.7596e-01 (6.9806e-01)	Acc@1  58.59 ( 53.20)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 18/636]	Time  0.496 ( 1.231)	Data  0.001 ( 0.210)	Loss 6.7328e-01 (6.9675e-01)	Acc@1  58.33 ( 53.47)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 19/636]	Time  0.496 ( 1.195)	Data  0.001 ( 0.199)	Loss 6.7218e-01 (6.9552e-01)	Acc@1  59.05 ( 53.75)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 20/636]	Time  0.495 ( 1.161)	Data  0.000 ( 0.190)	Loss 6.6717e-01 (6.9417e-01)	Acc@1  61.38 ( 54.11)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 21/636]	Time  0.494 ( 1.131)	Data  0.001 ( 0.181)	Loss 6.6608e-01 (6.9290e-01)	Acc@1  61.08 ( 54.43)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 22/636]	Time  0.496 ( 1.103)	Data  0.001 ( 0.173)	Loss 6.6148e-01 (6.9153e-01)	Acc@1  61.33 ( 54.73)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 23/636]	Time  0.496 ( 1.078)	Data  0.001 ( 0.166)	Loss 6.5395e-01 (6.8996e-01)	Acc@1  64.83 ( 55.15)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 24/636]	Time  0.496 ( 1.055)	Data  0.000 ( 0.160)	Loss 6.5532e-01 (6.8858e-01)	Acc@1  63.92 ( 55.50)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 25/636]	Time  0.495 ( 1.033)	Data  0.001 ( 0.153)	Loss 6.4855e-01 (6.8704e-01)	Acc@1  65.05 ( 55.87)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 26/636]	Time  0.495 ( 1.013)	Data  0.000 ( 0.148)	Loss 6.4039e-01 (6.8531e-01)	Acc@1  66.40 ( 56.26)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 27/636]	Time  0.496 ( 0.995)	Data  0.001 ( 0.142)	Loss 6.3945e-01 (6.8367e-01)	Acc@1  67.56 ( 56.66)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 28/636]	Time  0.496 ( 0.978)	Data  0.001 ( 0.138)	Loss 6.3624e-01 (6.8204e-01)	Acc@1  68.47 ( 57.07)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 29/636]	Time  0.497 ( 0.962)	Data  0.000 ( 0.133)	Loss 6.3314e-01 (6.8041e-01)	Acc@1  68.96 ( 57.46)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 30/636]	Time  0.495 ( 0.947)	Data  0.001 ( 0.129)	Loss 6.2793e-01 (6.7872e-01)	Acc@1  70.63 ( 57.89)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 31/636]	Time  0.495 ( 0.933)	Data  0.001 ( 0.125)	Loss 6.2267e-01 (6.7696e-01)	Acc@1  71.22 ( 58.31)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 32/636]	Time  0.497 ( 0.919)	Data  0.001 ( 0.121)	Loss 6.1867e-01 (6.7520e-01)	Acc@1  71.80 ( 58.72)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 33/636]	Time  0.497 ( 0.907)	Data  0.001 ( 0.117)	Loss 6.1508e-01 (6.7343e-01)	Acc@1  72.24 ( 59.11)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 34/636]	Time  0.497 ( 0.895)	Data  0.001 ( 0.114)	Loss 6.0566e-01 (6.7149e-01)	Acc@1  74.41 ( 59.55)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 35/636]	Time  0.497 ( 0.884)	Data  0.001 ( 0.111)	Loss 6.0751e-01 (6.6972e-01)	Acc@1  74.63 ( 59.97)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 36/636]	Time  0.496 ( 0.874)	Data  0.001 ( 0.108)	Loss 6.0110e-01 (6.6786e-01)	Acc@1  75.46 ( 60.39)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 37/636]	Time  0.496 ( 0.864)	Data  0.001 ( 0.105)	Loss 5.9704e-01 (6.6600e-01)	Acc@1  75.90 ( 60.80)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 38/636]	Time  0.497 ( 0.854)	Data  0.001 ( 0.102)	Loss 5.8988e-01 (6.6405e-01)	Acc@1  77.01 ( 61.21)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 39/636]	Time  0.496 ( 0.845)	Data  0.001 ( 0.100)	Loss 5.8897e-01 (6.6217e-01)	Acc@1  76.80 ( 61.60)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 40/636]	Time  0.497 ( 0.837)	Data  0.001 ( 0.098)	Loss 5.8185e-01 (6.6021e-01)	Acc@1  76.93 ( 61.98)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 41/636]	Time  0.497 ( 0.829)	Data  0.001 ( 0.095)	Loss 5.8033e-01 (6.5831e-01)	Acc@1  77.34 ( 62.34)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 42/636]	Time  0.496 ( 0.821)	Data  0.000 ( 0.093)	Loss 5.6938e-01 (6.5624e-01)	Acc@1  78.57 ( 62.72)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 43/636]	Time  0.497 ( 0.814)	Data  0.001 ( 0.091)	Loss 5.6641e-01 (6.5420e-01)	Acc@1  78.34 ( 63.07)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 44/636]	Time  0.497 ( 0.807)	Data  0.001 ( 0.089)	Loss 5.6595e-01 (6.5224e-01)	Acc@1  78.33 ( 63.41)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 45/636]	Time  0.497 ( 0.800)	Data  0.001 ( 0.087)	Loss 5.5883e-01 (6.5021e-01)	Acc@1  78.85 ( 63.75)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 46/636]	Time  0.497 ( 0.793)	Data  0.001 ( 0.085)	Loss 5.5010e-01 (6.4808e-01)	Acc@1  79.23 ( 64.08)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 47/636]	Time  0.497 ( 0.787)	Data  0.001 ( 0.083)	Loss 5.4415e-01 (6.4591e-01)	Acc@1  80.25 ( 64.41)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 48/636]	Time  0.497 ( 0.781)	Data  0.001 ( 0.082)	Loss 5.3862e-01 (6.4372e-01)	Acc@1  80.16 ( 64.74)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 49/636]	Time  0.497 ( 0.776)	Data  0.001 ( 0.080)	Loss 5.4521e-01 (6.4175e-01)	Acc@1  79.85 ( 65.04)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 50/636]	Time  0.497 ( 0.770)	Data  0.001 ( 0.078)	Loss 5.3297e-01 (6.3962e-01)	Acc@1  80.10 ( 65.33)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 51/636]	Time  0.497 ( 0.765)	Data  0.001 ( 0.077)	Loss 5.3476e-01 (6.3760e-01)	Acc@1  79.72 ( 65.61)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 52/636]	Time  0.498 ( 0.760)	Data  0.001 ( 0.076)	Loss 5.2576e-01 (6.3549e-01)	Acc@1  79.92 ( 65.88)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 53/636]	Time  0.497 ( 0.755)	Data  0.000 ( 0.074)	Loss 5.2155e-01 (6.3338e-01)	Acc@1  81.08 ( 66.16)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 54/636]	Time  0.497 ( 0.750)	Data  0.001 ( 0.073)	Loss 5.2181e-01 (6.3135e-01)	Acc@1  80.08 ( 66.41)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 55/636]	Time  0.497 ( 0.746)	Data  0.000 ( 0.072)	Loss 5.1376e-01 (6.2925e-01)	Acc@1  80.29 ( 66.66)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 56/636]	Time  0.497 ( 0.741)	Data  0.001 ( 0.070)	Loss 5.0861e-01 (6.2714e-01)	Acc@1  80.22 ( 66.90)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 57/636]	Time  0.496 ( 0.737)	Data  0.001 ( 0.069)	Loss 5.0824e-01 (6.2509e-01)	Acc@1  80.32 ( 67.13)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 58/636]	Time  0.497 ( 0.733)	Data  0.001 ( 0.068)	Loss 4.9810e-01 (6.2293e-01)	Acc@1  80.61 ( 67.36)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 59/636]	Time  0.498 ( 0.729)	Data  0.001 ( 0.067)	Loss 5.0471e-01 (6.2096e-01)	Acc@1  80.52 ( 67.58)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 60/636]	Time  0.498 ( 0.725)	Data  0.000 ( 0.066)	Loss 4.9324e-01 (6.1887e-01)	Acc@1  80.81 ( 67.80)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 61/636]	Time  0.498 ( 0.722)	Data  0.001 ( 0.065)	Loss 5.0759e-01 (6.1708e-01)	Acc@1  79.18 ( 67.98)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 62/636]	Time  0.498 ( 0.718)	Data  0.000 ( 0.064)	Loss 4.9368e-01 (6.1512e-01)	Acc@1  80.11 ( 68.17)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 63/636]	Time  0.499 ( 0.715)	Data  0.001 ( 0.063)	Loss 4.8825e-01 (6.1313e-01)	Acc@1  80.69 ( 68.37)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 64/636]	Time  0.499 ( 0.712)	Data  0.001 ( 0.062)	Loss 4.8426e-01 (6.1115e-01)	Acc@1  80.30 ( 68.55)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 65/636]	Time  0.499 ( 0.708)	Data  0.001 ( 0.061)	Loss 4.8398e-01 (6.0923e-01)	Acc@1  80.47 ( 68.73)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 66/636]	Time  0.498 ( 0.705)	Data  0.000 ( 0.060)	Loss 4.8119e-01 (6.0731e-01)	Acc@1  80.57 ( 68.91)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 67/636]	Time  0.499 ( 0.702)	Data  0.001 ( 0.059)	Loss 4.8546e-01 (6.0552e-01)	Acc@1  79.62 ( 69.07)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 68/636]	Time  0.498 ( 0.699)	Data  0.000 ( 0.058)	Loss 4.8307e-01 (6.0375e-01)	Acc@1  79.99 ( 69.22)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 69/636]	Time  0.498 ( 0.696)	Data  0.001 ( 0.057)	Loss 4.7556e-01 (6.0192e-01)	Acc@1  80.24 ( 69.38)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 70/636]	Time  0.498 ( 0.694)	Data  0.000 ( 0.057)	Loss 4.7051e-01 (6.0007e-01)	Acc@1  80.41 ( 69.54)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 71/636]	Time  0.498 ( 0.691)	Data  0.001 ( 0.056)	Loss 4.6355e-01 (5.9817e-01)	Acc@1  80.62 ( 69.69)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 72/636]	Time  0.499 ( 0.688)	Data  0.001 ( 0.055)	Loss 4.6501e-01 (5.9635e-01)	Acc@1  80.74 ( 69.84)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 73/636]	Time  0.499 ( 0.686)	Data  0.001 ( 0.054)	Loss 4.6916e-01 (5.9463e-01)	Acc@1  79.59 ( 69.97)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 74/636]	Time  0.499 ( 0.683)	Data  0.000 ( 0.054)	Loss 4.5703e-01 (5.9279e-01)	Acc@1  80.93 ( 70.12)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 75/636]	Time  0.500 ( 0.681)	Data  0.001 ( 0.053)	Loss 4.6005e-01 (5.9105e-01)	Acc@1  80.82 ( 70.26)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 76/636]	Time  0.499 ( 0.678)	Data  0.000 ( 0.052)	Loss 4.5590e-01 (5.8929e-01)	Acc@1  80.46 ( 70.39)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 77/636]	Time  0.500 ( 0.676)	Data  0.001 ( 0.052)	Loss 4.6521e-01 (5.8770e-01)	Acc@1  80.01 ( 70.52)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 78/636]	Time  0.499 ( 0.674)	Data  0.001 ( 0.051)	Loss 4.5065e-01 (5.8596e-01)	Acc@1  80.63 ( 70.65)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 79/636]	Time  0.499 ( 0.672)	Data  0.001 ( 0.050)	Loss 4.5464e-01 (5.8432e-01)	Acc@1  80.68 ( 70.77)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 80/636]	Time  0.499 ( 0.670)	Data  0.000 ( 0.050)	Loss 4.5194e-01 (5.8269e-01)	Acc@1  80.34 ( 70.89)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 81/636]	Time  0.499 ( 0.667)	Data  0.001 ( 0.049)	Loss 4.4677e-01 (5.8103e-01)	Acc@1  80.88 ( 71.01)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 82/636]	Time  0.499 ( 0.665)	Data  0.000 ( 0.048)	Loss 4.4833e-01 (5.7943e-01)	Acc@1  80.62 ( 71.13)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 83/636]	Time  0.500 ( 0.663)	Data  0.001 ( 0.048)	Loss 4.4649e-01 (5.7785e-01)	Acc@1  80.36 ( 71.24)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 84/636]	Time  0.499 ( 0.661)	Data  0.000 ( 0.047)	Loss 4.5718e-01 (5.7643e-01)	Acc@1  79.73 ( 71.34)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 85/636]	Time  0.500 ( 0.660)	Data  0.000 ( 0.047)	Loss 4.4208e-01 (5.7487e-01)	Acc@1  80.91 ( 71.45)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 86/636]	Time  0.500 ( 0.658)	Data  0.001 ( 0.046)	Loss 4.3396e-01 (5.7325e-01)	Acc@1  81.37 ( 71.56)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 87/636]	Time  0.500 ( 0.656)	Data  0.000 ( 0.046)	Loss 4.3837e-01 (5.7172e-01)	Acc@1  80.95 ( 71.67)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 88/636]	Time  0.500 ( 0.654)	Data  0.001 ( 0.045)	Loss 4.3483e-01 (5.7018e-01)	Acc@1  81.14 ( 71.77)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 89/636]	Time  0.500 ( 0.653)	Data  0.001 ( 0.045)	Loss 4.3948e-01 (5.6873e-01)	Acc@1  80.43 ( 71.87)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 90/636]	Time  0.500 ( 0.651)	Data  0.000 ( 0.044)	Loss 4.4439e-01 (5.6736e-01)	Acc@1  80.75 ( 71.97)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 91/636]	Time  0.500 ( 0.649)	Data  0.000 ( 0.044)	Loss 4.4724e-01 (5.6605e-01)	Acc@1  80.23 ( 72.06)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 92/636]	Time  0.500 ( 0.648)	Data  0.001 ( 0.043)	Loss 4.3470e-01 (5.6464e-01)	Acc@1  80.83 ( 72.15)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 93/636]	Time  0.500 ( 0.646)	Data  0.000 ( 0.043)	Loss 4.3492e-01 (5.6326e-01)	Acc@1  80.78 ( 72.24)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 94/636]	Time  0.499 ( 0.644)	Data  0.001 ( 0.042)	Loss 4.2214e-01 (5.6178e-01)	Acc@1  81.46 ( 72.34)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 95/636]	Time  0.498 ( 0.643)	Data  0.000 ( 0.042)	Loss 4.3038e-01 (5.6041e-01)	Acc@1  81.29 ( 72.43)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 96/636]	Time  0.498 ( 0.641)	Data  0.000 ( 0.042)	Loss 4.3105e-01 (5.5907e-01)	Acc@1  80.91 ( 72.52)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 97/636]	Time  0.498 ( 0.640)	Data  0.001 ( 0.041)	Loss 4.2786e-01 (5.5773e-01)	Acc@1  80.73 ( 72.61)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 98/636]	Time  0.498 ( 0.639)	Data  0.000 ( 0.041)	Loss 4.4559e-01 (5.5660e-01)	Acc@1  79.89 ( 72.68)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[ 99/636]	Time  0.498 ( 0.637)	Data  0.000 ( 0.040)	Loss 4.3260e-01 (5.5536e-01)	Acc@1  80.57 ( 72.76)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[100/636]	Time  0.498 ( 0.636)	Data  0.000 ( 0.040)	Loss 4.2985e-01 (5.5412e-01)	Acc@1  80.78 ( 72.84)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[101/636]	Time  0.498 ( 0.634)	Data  0.000 ( 0.040)	Loss 4.2914e-01 (5.5289e-01)	Acc@1  81.10 ( 72.92)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[102/636]	Time  0.498 ( 0.633)	Data  0.000 ( 0.039)	Loss 4.3832e-01 (5.5178e-01)	Acc@1  80.34 ( 72.99)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[103/636]	Time  0.498 ( 0.632)	Data  0.000 ( 0.039)	Loss 4.3463e-01 (5.5065e-01)	Acc@1  80.24 ( 73.06)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[104/636]	Time  0.498 ( 0.631)	Data  0.001 ( 0.038)	Loss 4.4146e-01 (5.4961e-01)	Acc@1  80.34 ( 73.13)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[105/636]	Time  0.498 ( 0.629)	Data  0.001 ( 0.038)	Loss 4.3376e-01 (5.4852e-01)	Acc@1  80.37 ( 73.20)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[106/636]	Time  0.498 ( 0.628)	Data  0.000 ( 0.038)	Loss 4.2923e-01 (5.4741e-01)	Acc@1  80.50 ( 73.27)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[107/636]	Time  0.498 ( 0.627)	Data  0.000 ( 0.037)	Loss 4.3624e-01 (5.4638e-01)	Acc@1  80.43 ( 73.33)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[108/636]	Time  0.498 ( 0.626)	Data  0.000 ( 0.037)	Loss 4.3506e-01 (5.4536e-01)	Acc@1  80.30 ( 73.40)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[109/636]	Time  0.500 ( 0.625)	Data  0.001 ( 0.037)	Loss 4.3410e-01 (5.4434e-01)	Acc@1  80.99 ( 73.47)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[110/636]	Time  0.499 ( 0.623)	Data  0.001 ( 0.036)	Loss 4.3472e-01 (5.4336e-01)	Acc@1  80.60 ( 73.53)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[111/636]	Time  0.499 ( 0.622)	Data  0.001 ( 0.036)	Loss 4.2401e-01 (5.4229e-01)	Acc@1  80.74 ( 73.59)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[112/636]	Time  0.499 ( 0.621)	Data  0.000 ( 0.036)	Loss 4.2164e-01 (5.4122e-01)	Acc@1  80.91 ( 73.66)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[113/636]	Time  0.499 ( 0.620)	Data  0.000 ( 0.035)	Loss 4.4995e-01 (5.4042e-01)	Acc@1  79.38 ( 73.71)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[114/636]	Time  0.499 ( 0.619)	Data  0.001 ( 0.035)	Loss 4.3312e-01 (5.3949e-01)	Acc@1  80.94 ( 73.77)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[115/636]	Time  0.499 ( 0.618)	Data  0.000 ( 0.035)	Loss 4.3269e-01 (5.3857e-01)	Acc@1  80.16 ( 73.83)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[116/636]	Time  0.499 ( 0.617)	Data  0.000 ( 0.035)	Loss 4.2609e-01 (5.3761e-01)	Acc@1  80.84 ( 73.89)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[117/636]	Time  0.499 ( 0.616)	Data  0.000 ( 0.034)	Loss 4.3332e-01 (5.3672e-01)	Acc@1  80.42 ( 73.94)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[118/636]	Time  0.499 ( 0.615)	Data  0.001 ( 0.034)	Loss 4.3328e-01 (5.3586e-01)	Acc@1  80.54 ( 74.00)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[119/636]	Time  0.499 ( 0.614)	Data  0.000 ( 0.034)	Loss 4.3889e-01 (5.3505e-01)	Acc@1  79.97 ( 74.05)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[120/636]	Time  0.500 ( 0.613)	Data  0.000 ( 0.033)	Loss 4.3606e-01 (5.3423e-01)	Acc@1  80.68 ( 74.10)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[121/636]	Time  0.500 ( 0.612)	Data  0.001 ( 0.033)	Loss 4.3126e-01 (5.3339e-01)	Acc@1  81.12 ( 74.16)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[122/636]	Time  0.500 ( 0.611)	Data  0.000 ( 0.033)	Loss 4.3215e-01 (5.3256e-01)	Acc@1  80.66 ( 74.21)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[123/636]	Time  0.500 ( 0.610)	Data  0.001 ( 0.033)	Loss 4.2494e-01 (5.3169e-01)	Acc@1  81.09 ( 74.27)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[124/636]	Time  0.499 ( 0.609)	Data  0.000 ( 0.032)	Loss 4.2683e-01 (5.3086e-01)	Acc@1  81.06 ( 74.32)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[125/636]	Time  0.500 ( 0.609)	Data  0.001 ( 0.032)	Loss 4.2870e-01 (5.3004e-01)	Acc@1  80.90 ( 74.37)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[126/636]	Time  0.500 ( 0.608)	Data  0.001 ( 0.032)	Loss 4.2710e-01 (5.2923e-01)	Acc@1  80.86 ( 74.43)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[127/636]	Time  0.500 ( 0.607)	Data  0.000 ( 0.032)	Loss 4.3390e-01 (5.2849e-01)	Acc@1  80.61 ( 74.47)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[128/636]	Time  0.500 ( 0.606)	Data  0.001 ( 0.031)	Loss 4.2381e-01 (5.2768e-01)	Acc@1  81.37 ( 74.53)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[129/636]	Time  0.500 ( 0.605)	Data  0.000 ( 0.031)	Loss 4.2380e-01 (5.2688e-01)	Acc@1  81.01 ( 74.58)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[130/636]	Time  0.500 ( 0.604)	Data  0.000 ( 0.031)	Loss 4.2877e-01 (5.2613e-01)	Acc@1  80.59 ( 74.62)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[131/636]	Time  0.500 ( 0.604)	Data  0.000 ( 0.031)	Loss 4.2429e-01 (5.2536e-01)	Acc@1  81.17 ( 74.67)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[132/636]	Time  0.500 ( 0.603)	Data  0.000 ( 0.030)	Loss 4.4183e-01 (5.2473e-01)	Acc@1  80.37 ( 74.72)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[133/636]	Time  0.500 ( 0.602)	Data  0.001 ( 0.030)	Loss 4.2475e-01 (5.2398e-01)	Acc@1  81.13 ( 74.76)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[134/636]	Time  0.500 ( 0.601)	Data  0.000 ( 0.030)	Loss 4.1619e-01 (5.2319e-01)	Acc@1  81.84 ( 74.82)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[135/636]	Time  0.500 ( 0.601)	Data  0.001 ( 0.030)	Loss 4.3670e-01 (5.2255e-01)	Acc@1  80.42 ( 74.86)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[136/636]	Time  0.500 ( 0.600)	Data  0.000 ( 0.030)	Loss 4.2995e-01 (5.2187e-01)	Acc@1  80.82 ( 74.90)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[137/636]	Time  0.500 ( 0.599)	Data  0.001 ( 0.029)	Loss 4.3495e-01 (5.2124e-01)	Acc@1  80.60 ( 74.94)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[138/636]	Time  0.500 ( 0.598)	Data  0.000 ( 0.029)	Loss 4.2245e-01 (5.2053e-01)	Acc@1  80.96 ( 74.99)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[139/636]	Time  0.500 ( 0.598)	Data  0.000 ( 0.029)	Loss 4.2646e-01 (5.1986e-01)	Acc@1  80.93 ( 75.03)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[140/636]	Time  0.500 ( 0.597)	Data  0.001 ( 0.029)	Loss 4.3098e-01 (5.1923e-01)	Acc@1  81.02 ( 75.07)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[141/636]	Time  0.500 ( 0.596)	Data  0.000 ( 0.029)	Loss 4.2506e-01 (5.1857e-01)	Acc@1  80.97 ( 75.11)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[142/636]	Time  0.500 ( 0.596)	Data  0.001 ( 0.028)	Loss 4.2895e-01 (5.1794e-01)	Acc@1  80.42 ( 75.15)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[143/636]	Time  0.500 ( 0.595)	Data  0.001 ( 0.028)	Loss 4.2173e-01 (5.1727e-01)	Acc@1  81.21 ( 75.19)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[144/636]	Time  0.501 ( 0.594)	Data  0.000 ( 0.028)	Loss 4.3363e-01 (5.1670e-01)	Acc@1  80.71 ( 75.23)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[145/636]	Time  0.500 ( 0.594)	Data  0.000 ( 0.028)	Loss 4.3712e-01 (5.1615e-01)	Acc@1  80.23 ( 75.26)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[146/636]	Time  0.501 ( 0.593)	Data  0.001 ( 0.028)	Loss 4.2517e-01 (5.1553e-01)	Acc@1  81.33 ( 75.30)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[147/636]	Time  0.500 ( 0.592)	Data  0.000 ( 0.027)	Loss 4.2581e-01 (5.1493e-01)	Acc@1  80.45 ( 75.34)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[148/636]	Time  0.500 ( 0.592)	Data  0.000 ( 0.027)	Loss 4.1867e-01 (5.1428e-01)	Acc@1  81.01 ( 75.38)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[149/636]	Time  0.500 ( 0.591)	Data  0.000 ( 0.027)	Loss 4.2023e-01 (5.1365e-01)	Acc@1  81.22 ( 75.42)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[150/636]	Time  0.500 ( 0.591)	Data  0.001 ( 0.027)	Loss 4.3117e-01 (5.1311e-01)	Acc@1  81.08 ( 75.45)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[151/636]	Time  0.501 ( 0.590)	Data  0.001 ( 0.027)	Loss 4.3281e-01 (5.1258e-01)	Acc@1  80.55 ( 75.49)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[152/636]	Time  0.500 ( 0.589)	Data  0.000 ( 0.027)	Loss 4.3732e-01 (5.1209e-01)	Acc@1  80.46 ( 75.52)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[153/636]	Time  0.500 ( 0.589)	Data  0.001 ( 0.026)	Loss 4.2185e-01 (5.1150e-01)	Acc@1  80.97 ( 75.56)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[154/636]	Time  0.500 ( 0.588)	Data  0.000 ( 0.026)	Loss 4.3129e-01 (5.1098e-01)	Acc@1  80.42 ( 75.59)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[155/636]	Time  0.500 ( 0.588)	Data  0.001 ( 0.026)	Loss 4.2377e-01 (5.1042e-01)	Acc@1  80.87 ( 75.62)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[156/636]	Time  0.500 ( 0.587)	Data  0.000 ( 0.026)	Loss 4.2790e-01 (5.0990e-01)	Acc@1  81.07 ( 75.66)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[157/636]	Time  0.500 ( 0.587)	Data  0.000 ( 0.026)	Loss 4.2487e-01 (5.0936e-01)	Acc@1  81.05 ( 75.69)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[158/636]	Time  0.500 ( 0.586)	Data  0.000 ( 0.026)	Loss 4.3057e-01 (5.0886e-01)	Acc@1  80.79 ( 75.72)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[159/636]	Time  0.500 ( 0.586)	Data  0.000 ( 0.025)	Loss 4.2990e-01 (5.0837e-01)	Acc@1  80.44 ( 75.75)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[160/636]	Time  0.500 ( 0.585)	Data  0.001 ( 0.025)	Loss 4.2509e-01 (5.0785e-01)	Acc@1  80.87 ( 75.78)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[161/636]	Time  0.500 ( 0.584)	Data  0.000 ( 0.025)	Loss 4.1942e-01 (5.0731e-01)	Acc@1  81.40 ( 75.82)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[162/636]	Time  0.500 ( 0.584)	Data  0.000 ( 0.025)	Loss 4.2757e-01 (5.0682e-01)	Acc@1  81.09 ( 75.85)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[163/636]	Time  0.500 ( 0.583)	Data  0.001 ( 0.025)	Loss 4.3100e-01 (5.0636e-01)	Acc@1  80.76 ( 75.88)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[164/636]	Time  0.500 ( 0.583)	Data  0.000 ( 0.025)	Loss 4.2923e-01 (5.0589e-01)	Acc@1  80.90 ( 75.91)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[165/636]	Time  0.500 ( 0.582)	Data  0.001 ( 0.024)	Loss 4.1980e-01 (5.0537e-01)	Acc@1  81.00 ( 75.94)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[166/636]	Time  0.500 ( 0.582)	Data  0.000 ( 0.024)	Loss 4.4433e-01 (5.0500e-01)	Acc@1  80.02 ( 75.97)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[167/636]	Time  0.500 ( 0.581)	Data  0.000 ( 0.024)	Loss 4.3892e-01 (5.0461e-01)	Acc@1  80.38 ( 75.99)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[168/636]	Time  0.500 ( 0.581)	Data  0.000 ( 0.024)	Loss 4.3108e-01 (5.0418e-01)	Acc@1  80.79 ( 76.02)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[169/636]	Time  0.500 ( 0.580)	Data  0.000 ( 0.024)	Loss 4.2876e-01 (5.0373e-01)	Acc@1  80.95 ( 76.05)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[170/636]	Time  0.500 ( 0.580)	Data  0.000 ( 0.024)	Loss 4.2609e-01 (5.0328e-01)	Acc@1  81.18 ( 76.08)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[171/636]	Time  0.500 ( 0.580)	Data  0.000 ( 0.024)	Loss 4.3317e-01 (5.0287e-01)	Acc@1  80.25 ( 76.10)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[172/636]	Time  0.500 ( 0.579)	Data  0.000 ( 0.023)	Loss 4.1598e-01 (5.0237e-01)	Acc@1  81.21 ( 76.13)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[173/636]	Time  0.500 ( 0.579)	Data  0.000 ( 0.023)	Loss 4.2653e-01 (5.0193e-01)	Acc@1  80.56 ( 76.16)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[174/636]	Time  0.500 ( 0.578)	Data  0.000 ( 0.023)	Loss 4.1766e-01 (5.0145e-01)	Acc@1  81.60 ( 76.19)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[175/636]	Time  0.500 ( 0.578)	Data  0.001 ( 0.023)	Loss 4.2929e-01 (5.0104e-01)	Acc@1  81.21 ( 76.22)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[176/636]	Time  0.500 ( 0.577)	Data  0.001 ( 0.023)	Loss 4.3696e-01 (5.0068e-01)	Acc@1  80.04 ( 76.24)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[177/636]	Time  0.500 ( 0.577)	Data  0.000 ( 0.023)	Loss 4.1546e-01 (5.0020e-01)	Acc@1  81.38 ( 76.27)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[178/636]	Time  0.500 ( 0.576)	Data  0.000 ( 0.023)	Loss 4.3631e-01 (4.9984e-01)	Acc@1  80.53 ( 76.29)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[179/636]	Time  0.500 ( 0.576)	Data  0.000 ( 0.023)	Loss 4.3907e-01 (4.9951e-01)	Acc@1  79.78 ( 76.31)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[180/636]	Time  0.500 ( 0.576)	Data  0.000 ( 0.022)	Loss 4.3356e-01 (4.9914e-01)	Acc@1  80.47 ( 76.33)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[181/636]	Time  0.500 ( 0.575)	Data  0.001 ( 0.022)	Loss 4.3379e-01 (4.9878e-01)	Acc@1  80.44 ( 76.36)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[182/636]	Time  0.500 ( 0.575)	Data  0.001 ( 0.022)	Loss 4.2786e-01 (4.9839e-01)	Acc@1  81.15 ( 76.38)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[183/636]	Time  0.500 ( 0.574)	Data  0.000 ( 0.022)	Loss 4.1953e-01 (4.9797e-01)	Acc@1  81.58 ( 76.41)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[184/636]	Time  0.500 ( 0.574)	Data  0.000 ( 0.022)	Loss 4.2537e-01 (4.9757e-01)	Acc@1  80.93 ( 76.44)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[185/636]	Time  0.500 ( 0.574)	Data  0.000 ( 0.022)	Loss 4.3331e-01 (4.9723e-01)	Acc@1  80.62 ( 76.46)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[186/636]	Time  0.500 ( 0.573)	Data  0.000 ( 0.022)	Loss 4.2086e-01 (4.9682e-01)	Acc@1  81.20 ( 76.48)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[187/636]	Time  0.500 ( 0.573)	Data  0.001 ( 0.022)	Loss 4.2161e-01 (4.9642e-01)	Acc@1  81.26 ( 76.51)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[188/636]	Time  0.500 ( 0.572)	Data  0.001 ( 0.022)	Loss 4.2691e-01 (4.9605e-01)	Acc@1  80.64 ( 76.53)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[189/636]	Time  0.500 ( 0.572)	Data  0.000 ( 0.021)	Loss 4.2397e-01 (4.9567e-01)	Acc@1  81.07 ( 76.55)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[190/636]	Time  0.500 ( 0.572)	Data  0.000 ( 0.021)	Loss 4.1298e-01 (4.9524e-01)	Acc@1  81.64 ( 76.58)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[191/636]	Time  0.500 ( 0.571)	Data  0.000 ( 0.021)	Loss 4.2789e-01 (4.9489e-01)	Acc@1  80.41 ( 76.60)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[192/636]	Time  0.500 ( 0.571)	Data  0.001 ( 0.021)	Loss 4.2453e-01 (4.9452e-01)	Acc@1  80.95 ( 76.62)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[193/636]	Time  0.500 ( 0.571)	Data  0.000 ( 0.021)	Loss 4.2759e-01 (4.9418e-01)	Acc@1  80.77 ( 76.65)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[194/636]	Time  0.500 ( 0.570)	Data  0.001 ( 0.021)	Loss 4.2945e-01 (4.9385e-01)	Acc@1  80.62 ( 76.67)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[195/636]	Time  0.500 ( 0.570)	Data  0.000 ( 0.021)	Loss 4.2235e-01 (4.9348e-01)	Acc@1  80.86 ( 76.69)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[196/636]	Time  0.500 ( 0.569)	Data  0.000 ( 0.021)	Loss 4.2411e-01 (4.9313e-01)	Acc@1  81.11 ( 76.71)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[197/636]	Time  0.500 ( 0.569)	Data  0.000 ( 0.021)	Loss 4.2455e-01 (4.9278e-01)	Acc@1  81.15 ( 76.73)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[198/636]	Time  0.500 ( 0.569)	Data  0.000 ( 0.020)	Loss 4.3318e-01 (4.9248e-01)	Acc@1  80.25 ( 76.75)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[199/636]	Time  0.500 ( 0.568)	Data  0.001 ( 0.020)	Loss 4.1691e-01 (4.9211e-01)	Acc@1  81.44 ( 76.77)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[200/636]	Time  0.499 ( 0.568)	Data  0.000 ( 0.020)	Loss 4.3209e-01 (4.9181e-01)	Acc@1  80.69 ( 76.79)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[201/636]	Time  0.500 ( 0.568)	Data  0.000 ( 0.020)	Loss 4.3140e-01 (4.9151e-01)	Acc@1  80.90 ( 76.81)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[202/636]	Time  0.500 ( 0.567)	Data  0.000 ( 0.020)	Loss 4.2301e-01 (4.9117e-01)	Acc@1  81.42 ( 76.84)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[203/636]	Time  0.500 ( 0.567)	Data  0.001 ( 0.020)	Loss 4.3123e-01 (4.9088e-01)	Acc@1  80.48 ( 76.85)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[204/636]	Time  0.500 ( 0.567)	Data  0.000 ( 0.020)	Loss 4.3453e-01 (4.9060e-01)	Acc@1  81.04 ( 76.87)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[205/636]	Time  0.500 ( 0.566)	Data  0.000 ( 0.020)	Loss 4.2990e-01 (4.9031e-01)	Acc@1  80.66 ( 76.89)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[206/636]	Time  0.500 ( 0.566)	Data  0.000 ( 0.020)	Loss 4.3755e-01 (4.9005e-01)	Acc@1  80.23 ( 76.91)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[207/636]	Time  0.500 ( 0.566)	Data  0.001 ( 0.020)	Loss 4.3388e-01 (4.8978e-01)	Acc@1  80.03 ( 76.92)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[208/636]	Time  0.500 ( 0.565)	Data  0.000 ( 0.020)	Loss 4.2758e-01 (4.8949e-01)	Acc@1  80.98 ( 76.94)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[209/636]	Time  0.499 ( 0.565)	Data  0.000 ( 0.019)	Loss 4.3339e-01 (4.8922e-01)	Acc@1  80.22 ( 76.96)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[210/636]	Time  0.500 ( 0.565)	Data  0.000 ( 0.019)	Loss 4.3202e-01 (4.8895e-01)	Acc@1  80.93 ( 76.98)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[211/636]	Time  0.500 ( 0.565)	Data  0.000 ( 0.019)	Loss 4.2852e-01 (4.8866e-01)	Acc@1  80.63 ( 76.99)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[212/636]	Time  0.501 ( 0.564)	Data  0.001 ( 0.019)	Loss 4.2585e-01 (4.8837e-01)	Acc@1  81.00 ( 77.01)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[213/636]	Time  0.500 ( 0.564)	Data  0.000 ( 0.019)	Loss 4.2019e-01 (4.8805e-01)	Acc@1  80.85 ( 77.03)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[214/636]	Time  0.500 ( 0.564)	Data  0.000 ( 0.019)	Loss 4.2155e-01 (4.8774e-01)	Acc@1  80.94 ( 77.05)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[215/636]	Time  0.500 ( 0.563)	Data  0.000 ( 0.019)	Loss 4.3325e-01 (4.8749e-01)	Acc@1  81.07 ( 77.07)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[216/636]	Time  0.500 ( 0.563)	Data  0.000 ( 0.019)	Loss 4.1757e-01 (4.8717e-01)	Acc@1  81.13 ( 77.09)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[217/636]	Time  0.500 ( 0.563)	Data  0.000 ( 0.019)	Loss 4.1722e-01 (4.8684e-01)	Acc@1  81.41 ( 77.11)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[218/636]	Time  0.501 ( 0.562)	Data  0.001 ( 0.019)	Loss 4.3137e-01 (4.8659e-01)	Acc@1  80.25 ( 77.12)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[219/636]	Time  0.501 ( 0.562)	Data  0.001 ( 0.019)	Loss 4.2597e-01 (4.8632e-01)	Acc@1  80.91 ( 77.14)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[220/636]	Time  0.500 ( 0.562)	Data  0.001 ( 0.018)	Loss 4.1988e-01 (4.8601e-01)	Acc@1  81.77 ( 77.16)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[221/636]	Time  0.501 ( 0.562)	Data  0.001 ( 0.018)	Loss 4.1970e-01 (4.8572e-01)	Acc@1  81.40 ( 77.18)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[222/636]	Time  0.501 ( 0.561)	Data  0.001 ( 0.018)	Loss 4.3154e-01 (4.8547e-01)	Acc@1  80.57 ( 77.19)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[223/636]	Time  0.501 ( 0.561)	Data  0.001 ( 0.018)	Loss 4.2560e-01 (4.8521e-01)	Acc@1  80.55 ( 77.21)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[224/636]	Time  0.501 ( 0.561)	Data  0.000 ( 0.018)	Loss 4.2088e-01 (4.8492e-01)	Acc@1  81.63 ( 77.23)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[225/636]	Time  0.501 ( 0.561)	Data  0.001 ( 0.018)	Loss 4.1940e-01 (4.8463e-01)	Acc@1  81.27 ( 77.25)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[226/636]	Time  0.501 ( 0.560)	Data  0.000 ( 0.018)	Loss 4.2221e-01 (4.8436e-01)	Acc@1  81.55 ( 77.26)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[227/636]	Time  0.500 ( 0.560)	Data  0.000 ( 0.018)	Loss 4.2387e-01 (4.8409e-01)	Acc@1  80.96 ( 77.28)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[228/636]	Time  0.501 ( 0.560)	Data  0.001 ( 0.018)	Loss 4.2495e-01 (4.8383e-01)	Acc@1  81.13 ( 77.30)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[229/636]	Time  0.500 ( 0.560)	Data  0.000 ( 0.018)	Loss 4.2799e-01 (4.8359e-01)	Acc@1  81.04 ( 77.31)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[230/636]	Time  0.500 ( 0.559)	Data  0.000 ( 0.018)	Loss 4.3134e-01 (4.8336e-01)	Acc@1  80.48 ( 77.33)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[231/636]	Time  0.501 ( 0.559)	Data  0.001 ( 0.018)	Loss 4.2506e-01 (4.8311e-01)	Acc@1  81.25 ( 77.34)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[232/636]	Time  0.500 ( 0.559)	Data  0.000 ( 0.018)	Loss 4.1710e-01 (4.8283e-01)	Acc@1  81.54 ( 77.36)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[233/636]	Time  0.501 ( 0.559)	Data  0.000 ( 0.017)	Loss 4.3671e-01 (4.8263e-01)	Acc@1  80.43 ( 77.38)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[234/636]	Time  0.501 ( 0.558)	Data  0.000 ( 0.017)	Loss 4.2153e-01 (4.8237e-01)	Acc@1  80.82 ( 77.39)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[235/636]	Time  0.501 ( 0.558)	Data  0.001 ( 0.017)	Loss 4.2386e-01 (4.8212e-01)	Acc@1  81.42 ( 77.41)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[236/636]	Time  0.501 ( 0.558)	Data  0.000 ( 0.017)	Loss 4.1949e-01 (4.8186e-01)	Acc@1  81.41 ( 77.42)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[237/636]	Time  0.501 ( 0.558)	Data  0.000 ( 0.017)	Loss 4.3090e-01 (4.8164e-01)	Acc@1  80.57 ( 77.44)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[238/636]	Time  0.500 ( 0.557)	Data  0.000 ( 0.017)	Loss 4.2931e-01 (4.8143e-01)	Acc@1  80.88 ( 77.45)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[239/636]	Time  0.500 ( 0.557)	Data  0.001 ( 0.017)	Loss 4.2900e-01 (4.8121e-01)	Acc@1  80.78 ( 77.47)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[240/636]	Time  0.501 ( 0.557)	Data  0.000 ( 0.017)	Loss 4.3393e-01 (4.8101e-01)	Acc@1  80.63 ( 77.48)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[241/636]	Time  0.501 ( 0.557)	Data  0.000 ( 0.017)	Loss 4.3036e-01 (4.8080e-01)	Acc@1  80.84 ( 77.49)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[242/636]	Time  0.501 ( 0.556)	Data  0.000 ( 0.017)	Loss 4.2216e-01 (4.8056e-01)	Acc@1  81.33 ( 77.51)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[243/636]	Time  0.502 ( 0.556)	Data  0.000 ( 0.017)	Loss 4.3005e-01 (4.8035e-01)	Acc@1  80.73 ( 77.52)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[244/636]	Time  0.501 ( 0.556)	Data  0.000 ( 0.017)	Loss 4.4126e-01 (4.8019e-01)	Acc@1  80.00 ( 77.53)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[245/636]	Time  0.501 ( 0.556)	Data  0.000 ( 0.017)	Loss 4.2576e-01 (4.7997e-01)	Acc@1  80.44 ( 77.54)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[246/636]	Time  0.501 ( 0.555)	Data  0.000 ( 0.017)	Loss 4.2758e-01 (4.7976e-01)	Acc@1  80.43 ( 77.56)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[247/636]	Time  0.501 ( 0.555)	Data  0.001 ( 0.017)	Loss 4.3395e-01 (4.7958e-01)	Acc@1  80.73 ( 77.57)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[248/636]	Time  0.501 ( 0.555)	Data  0.000 ( 0.016)	Loss 4.2372e-01 (4.7935e-01)	Acc@1  81.08 ( 77.58)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[249/636]	Time  0.501 ( 0.555)	Data  0.000 ( 0.016)	Loss 4.3023e-01 (4.7915e-01)	Acc@1  80.92 ( 77.60)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[250/636]	Time  0.501 ( 0.555)	Data  0.000 ( 0.016)	Loss 4.2640e-01 (4.7894e-01)	Acc@1  80.54 ( 77.61)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[251/636]	Time  0.501 ( 0.554)	Data  0.000 ( 0.016)	Loss 4.2028e-01 (4.7871e-01)	Acc@1  81.06 ( 77.62)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[252/636]	Time  0.502 ( 0.554)	Data  0.000 ( 0.016)	Loss 4.2879e-01 (4.7851e-01)	Acc@1  80.73 ( 77.63)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[253/636]	Time  0.501 ( 0.554)	Data  0.000 ( 0.016)	Loss 4.1974e-01 (4.7828e-01)	Acc@1  81.21 ( 77.65)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[254/636]	Time  0.501 ( 0.554)	Data  0.001 ( 0.016)	Loss 4.2452e-01 (4.7807e-01)	Acc@1  81.42 ( 77.66)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[255/636]	Time  0.501 ( 0.554)	Data  0.000 ( 0.016)	Loss 4.2992e-01 (4.7788e-01)	Acc@1  80.93 ( 77.68)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[256/636]	Time  0.501 ( 0.553)	Data  0.000 ( 0.016)	Loss 4.3118e-01 (4.7770e-01)	Acc@1  80.45 ( 77.69)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[257/636]	Time  0.501 ( 0.553)	Data  0.001 ( 0.016)	Loss 4.2697e-01 (4.7751e-01)	Acc@1  80.61 ( 77.70)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[258/636]	Time  0.501 ( 0.553)	Data  0.001 ( 0.016)	Loss 4.2792e-01 (4.7731e-01)	Acc@1  80.68 ( 77.71)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[259/636]	Time  0.502 ( 0.553)	Data  0.001 ( 0.016)	Loss 4.2785e-01 (4.7712e-01)	Acc@1  80.59 ( 77.72)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[260/636]	Time  0.502 ( 0.553)	Data  0.000 ( 0.016)	Loss 4.2307e-01 (4.7692e-01)	Acc@1  81.00 ( 77.73)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[261/636]	Time  0.501 ( 0.552)	Data  0.000 ( 0.016)	Loss 4.2165e-01 (4.7671e-01)	Acc@1  81.31 ( 77.75)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[262/636]	Time  0.502 ( 0.552)	Data  0.001 ( 0.016)	Loss 4.2809e-01 (4.7652e-01)	Acc@1  80.96 ( 77.76)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[263/636]	Time  0.502 ( 0.552)	Data  0.001 ( 0.016)	Loss 4.2883e-01 (4.7634e-01)	Acc@1  80.47 ( 77.77)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[264/636]	Time  0.502 ( 0.552)	Data  0.001 ( 0.015)	Loss 4.3208e-01 (4.7617e-01)	Acc@1  80.45 ( 77.78)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[265/636]	Time  0.501 ( 0.552)	Data  0.001 ( 0.015)	Loss 4.1588e-01 (4.7595e-01)	Acc@1  80.80 ( 77.79)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[266/636]	Time  0.502 ( 0.551)	Data  0.001 ( 0.015)	Loss 4.0666e-01 (4.7569e-01)	Acc@1  81.85 ( 77.81)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[267/636]	Time  0.501 ( 0.551)	Data  0.001 ( 0.015)	Loss 4.1578e-01 (4.7546e-01)	Acc@1  81.65 ( 77.82)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[268/636]	Time  0.501 ( 0.551)	Data  0.001 ( 0.015)	Loss 4.2622e-01 (4.7528e-01)	Acc@1  80.68 ( 77.83)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[269/636]	Time  0.501 ( 0.551)	Data  0.001 ( 0.015)	Loss 4.1650e-01 (4.7506e-01)	Acc@1  81.73 ( 77.84)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[270/636]	Time  0.501 ( 0.551)	Data  0.001 ( 0.015)	Loss 4.3694e-01 (4.7492e-01)	Acc@1  80.56 ( 77.85)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[271/636]	Time  0.502 ( 0.550)	Data  0.001 ( 0.015)	Loss 4.3030e-01 (4.7476e-01)	Acc@1  80.75 ( 77.87)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[272/636]	Time  0.501 ( 0.550)	Data  0.000 ( 0.015)	Loss 4.2078e-01 (4.7456e-01)	Acc@1  80.83 ( 77.88)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[273/636]	Time  0.502 ( 0.550)	Data  0.000 ( 0.015)	Loss 4.2489e-01 (4.7438e-01)	Acc@1  81.69 ( 77.89)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[274/636]	Time  0.501 ( 0.550)	Data  0.001 ( 0.015)	Loss 4.1987e-01 (4.7418e-01)	Acc@1  81.29 ( 77.90)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[275/636]	Time  0.502 ( 0.550)	Data  0.001 ( 0.015)	Loss 4.2375e-01 (4.7400e-01)	Acc@1  81.00 ( 77.91)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[276/636]	Time  0.501 ( 0.550)	Data  0.000 ( 0.015)	Loss 4.2757e-01 (4.7383e-01)	Acc@1  80.57 ( 77.92)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[277/636]	Time  0.502 ( 0.549)	Data  0.000 ( 0.015)	Loss 4.2476e-01 (4.7365e-01)	Acc@1  81.24 ( 77.94)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[278/636]	Time  0.502 ( 0.549)	Data  0.001 ( 0.015)	Loss 4.1935e-01 (4.7346e-01)	Acc@1  80.71 ( 77.95)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[279/636]	Time  0.501 ( 0.549)	Data  0.001 ( 0.015)	Loss 4.3396e-01 (4.7332e-01)	Acc@1  80.85 ( 77.96)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[280/636]	Time  0.501 ( 0.549)	Data  0.001 ( 0.015)	Loss 4.2091e-01 (4.7313e-01)	Acc@1  81.09 ( 77.97)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[281/636]	Time  0.501 ( 0.549)	Data  0.000 ( 0.015)	Loss 4.2304e-01 (4.7295e-01)	Acc@1  80.96 ( 77.98)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[282/636]	Time  0.501 ( 0.549)	Data  0.001 ( 0.015)	Loss 4.3793e-01 (4.7283e-01)	Acc@1  80.10 ( 77.98)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[283/636]	Time  0.501 ( 0.548)	Data  0.001 ( 0.014)	Loss 4.2576e-01 (4.7267e-01)	Acc@1  80.40 ( 77.99)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[284/636]	Time  0.502 ( 0.548)	Data  0.001 ( 0.014)	Loss 4.1783e-01 (4.7247e-01)	Acc@1  81.57 ( 78.01)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[285/636]	Time  0.502 ( 0.548)	Data  0.001 ( 0.014)	Loss 4.3176e-01 (4.7233e-01)	Acc@1  80.67 ( 78.02)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[286/636]	Time  0.502 ( 0.548)	Data  0.001 ( 0.014)	Loss 4.3312e-01 (4.7219e-01)	Acc@1  80.33 ( 78.02)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[287/636]	Time  0.502 ( 0.548)	Data  0.001 ( 0.014)	Loss 4.1373e-01 (4.7199e-01)	Acc@1  81.39 ( 78.03)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[288/636]	Time  0.502 ( 0.548)	Data  0.001 ( 0.014)	Loss 4.2400e-01 (4.7182e-01)	Acc@1  80.97 ( 78.05)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[289/636]	Time  0.502 ( 0.547)	Data  0.001 ( 0.014)	Loss 4.2825e-01 (4.7167e-01)	Acc@1  80.93 ( 78.05)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[290/636]	Time  0.502 ( 0.547)	Data  0.001 ( 0.014)	Loss 4.1928e-01 (4.7149e-01)	Acc@1  81.76 ( 78.07)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[291/636]	Time  0.501 ( 0.547)	Data  0.000 ( 0.014)	Loss 4.1543e-01 (4.7130e-01)	Acc@1  81.56 ( 78.08)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[292/636]	Time  0.501 ( 0.547)	Data  0.001 ( 0.014)	Loss 4.2895e-01 (4.7116e-01)	Acc@1  80.55 ( 78.09)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[293/636]	Time  0.501 ( 0.547)	Data  0.000 ( 0.014)	Loss 4.3005e-01 (4.7102e-01)	Acc@1  80.37 ( 78.10)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[294/636]	Time  0.501 ( 0.547)	Data  0.001 ( 0.014)	Loss 4.2411e-01 (4.7086e-01)	Acc@1  80.67 ( 78.10)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[295/636]	Time  0.501 ( 0.547)	Data  0.001 ( 0.014)	Loss 4.1635e-01 (4.7067e-01)	Acc@1  81.51 ( 78.12)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[296/636]	Time  0.502 ( 0.546)	Data  0.001 ( 0.014)	Loss 4.2481e-01 (4.7052e-01)	Acc@1  81.13 ( 78.13)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[297/636]	Time  0.502 ( 0.546)	Data  0.001 ( 0.014)	Loss 4.2247e-01 (4.7036e-01)	Acc@1  81.36 ( 78.14)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[298/636]	Time  0.501 ( 0.546)	Data  0.000 ( 0.014)	Loss 4.3359e-01 (4.7024e-01)	Acc@1  80.73 ( 78.15)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[299/636]	Time  0.501 ( 0.546)	Data  0.000 ( 0.014)	Loss 4.2726e-01 (4.7009e-01)	Acc@1  81.01 ( 78.16)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[300/636]	Time  0.502 ( 0.546)	Data  0.001 ( 0.014)	Loss 4.3304e-01 (4.6997e-01)	Acc@1  81.31 ( 78.17)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[301/636]	Time  0.502 ( 0.546)	Data  0.001 ( 0.014)	Loss 4.2670e-01 (4.6983e-01)	Acc@1  80.97 ( 78.18)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[302/636]	Time  0.502 ( 0.545)	Data  0.001 ( 0.014)	Loss 4.2910e-01 (4.6969e-01)	Acc@1  80.81 ( 78.18)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[303/636]	Time  0.502 ( 0.545)	Data  0.001 ( 0.014)	Loss 4.1664e-01 (4.6952e-01)	Acc@1  81.44 ( 78.19)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[304/636]	Time  0.501 ( 0.545)	Data  0.001 ( 0.014)	Loss 4.3076e-01 (4.6939e-01)	Acc@1  80.26 ( 78.20)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[305/636]	Time  0.501 ( 0.545)	Data  0.001 ( 0.013)	Loss 4.2642e-01 (4.6925e-01)	Acc@1  80.68 ( 78.21)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[306/636]	Time  0.501 ( 0.545)	Data  0.000 ( 0.013)	Loss 4.3464e-01 (4.6914e-01)	Acc@1  80.52 ( 78.22)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[307/636]	Time  0.501 ( 0.545)	Data  0.000 ( 0.013)	Loss 4.2404e-01 (4.6899e-01)	Acc@1  80.92 ( 78.23)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[308/636]	Time  0.502 ( 0.545)	Data  0.001 ( 0.013)	Loss 4.1467e-01 (4.6882e-01)	Acc@1  81.25 ( 78.24)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[309/636]	Time  0.502 ( 0.544)	Data  0.001 ( 0.013)	Loss 4.2646e-01 (4.6868e-01)	Acc@1  80.71 ( 78.24)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[310/636]	Time  0.502 ( 0.544)	Data  0.001 ( 0.013)	Loss 4.3272e-01 (4.6856e-01)	Acc@1  81.13 ( 78.25)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[311/636]	Time  0.502 ( 0.544)	Data  0.001 ( 0.013)	Loss 4.3106e-01 (4.6844e-01)	Acc@1  80.67 ( 78.26)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[312/636]	Time  0.502 ( 0.544)	Data  0.000 ( 0.013)	Loss 4.2853e-01 (4.6832e-01)	Acc@1  81.04 ( 78.27)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[313/636]	Time  0.502 ( 0.544)	Data  0.001 ( 0.013)	Loss 4.1764e-01 (4.6815e-01)	Acc@1  81.33 ( 78.28)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[314/636]	Time  0.501 ( 0.544)	Data  0.000 ( 0.013)	Loss 4.1808e-01 (4.6799e-01)	Acc@1  81.71 ( 78.29)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[315/636]	Time  0.501 ( 0.544)	Data  0.001 ( 0.013)	Loss 4.1609e-01 (4.6783e-01)	Acc@1  81.40 ( 78.30)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[316/636]	Time  0.501 ( 0.544)	Data  0.001 ( 0.013)	Loss 4.2074e-01 (4.6768e-01)	Acc@1  81.24 ( 78.31)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[317/636]	Time  0.502 ( 0.543)	Data  0.001 ( 0.013)	Loss 4.3355e-01 (4.6757e-01)	Acc@1  80.21 ( 78.32)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[318/636]	Time  0.501 ( 0.543)	Data  0.000 ( 0.013)	Loss 4.4304e-01 (4.6750e-01)	Acc@1  80.06 ( 78.32)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[319/636]	Time  0.502 ( 0.543)	Data  0.001 ( 0.013)	Loss 4.2345e-01 (4.6736e-01)	Acc@1  81.09 ( 78.33)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[320/636]	Time  0.501 ( 0.543)	Data  0.000 ( 0.013)	Loss 4.2794e-01 (4.6724e-01)	Acc@1  80.67 ( 78.34)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[321/636]	Time  0.502 ( 0.543)	Data  0.001 ( 0.013)	Loss 4.3300e-01 (4.6713e-01)	Acc@1  80.72 ( 78.34)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[322/636]	Time  0.502 ( 0.543)	Data  0.000 ( 0.013)	Loss 4.3402e-01 (4.6703e-01)	Acc@1  80.66 ( 78.35)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[323/636]	Time  0.502 ( 0.543)	Data  0.001 ( 0.013)	Loss 4.2219e-01 (4.6689e-01)	Acc@1  81.10 ( 78.36)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[324/636]	Time  0.502 ( 0.543)	Data  0.000 ( 0.013)	Loss 4.2118e-01 (4.6675e-01)	Acc@1  80.81 ( 78.37)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[325/636]	Time  0.501 ( 0.542)	Data  0.000 ( 0.013)	Loss 4.1967e-01 (4.6660e-01)	Acc@1  81.68 ( 78.38)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[326/636]	Time  0.501 ( 0.542)	Data  0.000 ( 0.013)	Loss 4.3582e-01 (4.6651e-01)	Acc@1  80.47 ( 78.38)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[327/636]	Time  0.501 ( 0.542)	Data  0.000 ( 0.013)	Loss 4.3022e-01 (4.6640e-01)	Acc@1  80.77 ( 78.39)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[328/636]	Time  0.501 ( 0.542)	Data  0.000 ( 0.013)	Loss 4.2822e-01 (4.6628e-01)	Acc@1  81.21 ( 78.40)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[329/636]	Time  0.501 ( 0.542)	Data  0.001 ( 0.013)	Loss 4.2460e-01 (4.6616e-01)	Acc@1  80.81 ( 78.41)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[330/636]	Time  0.502 ( 0.542)	Data  0.001 ( 0.013)	Loss 4.2808e-01 (4.6604e-01)	Acc@1  81.06 ( 78.41)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[331/636]	Time  0.502 ( 0.542)	Data  0.000 ( 0.012)	Loss 4.1717e-01 (4.6590e-01)	Acc@1  81.65 ( 78.42)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[332/636]	Time  0.501 ( 0.542)	Data  0.001 ( 0.012)	Loss 4.2484e-01 (4.6577e-01)	Acc@1  80.81 ( 78.43)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[333/636]	Time  0.502 ( 0.541)	Data  0.000 ( 0.012)	Loss 4.2559e-01 (4.6565e-01)	Acc@1  80.62 ( 78.44)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[334/636]	Time  0.502 ( 0.541)	Data  0.001 ( 0.012)	Loss 4.3391e-01 (4.6556e-01)	Acc@1  80.78 ( 78.45)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[335/636]	Time  0.503 ( 0.541)	Data  0.001 ( 0.012)	Loss 4.2365e-01 (4.6543e-01)	Acc@1  80.99 ( 78.45)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[336/636]	Time  0.502 ( 0.541)	Data  0.001 ( 0.012)	Loss 4.2296e-01 (4.6531e-01)	Acc@1  80.77 ( 78.46)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[337/636]	Time  0.501 ( 0.541)	Data  0.001 ( 0.012)	Loss 4.3198e-01 (4.6521e-01)	Acc@1  80.57 ( 78.47)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[338/636]	Time  0.501 ( 0.541)	Data  0.000 ( 0.012)	Loss 4.3403e-01 (4.6512e-01)	Acc@1  80.83 ( 78.47)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[339/636]	Time  0.502 ( 0.541)	Data  0.001 ( 0.012)	Loss 4.3717e-01 (4.6503e-01)	Acc@1  80.30 ( 78.48)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[340/636]	Time  0.502 ( 0.541)	Data  0.001 ( 0.012)	Loss 4.2319e-01 (4.6491e-01)	Acc@1  80.74 ( 78.49)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[341/636]	Time  0.502 ( 0.540)	Data  0.001 ( 0.012)	Loss 4.2084e-01 (4.6478e-01)	Acc@1  81.10 ( 78.49)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[342/636]	Time  0.502 ( 0.540)	Data  0.001 ( 0.012)	Loss 4.3088e-01 (4.6468e-01)	Acc@1  80.77 ( 78.50)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[343/636]	Time  0.501 ( 0.540)	Data  0.001 ( 0.012)	Loss 4.2101e-01 (4.6456e-01)	Acc@1  81.12 ( 78.51)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[344/636]	Time  0.502 ( 0.540)	Data  0.001 ( 0.012)	Loss 4.2404e-01 (4.6444e-01)	Acc@1  80.82 ( 78.51)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[345/636]	Time  0.502 ( 0.540)	Data  0.001 ( 0.012)	Loss 4.3555e-01 (4.6436e-01)	Acc@1  80.25 ( 78.52)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[346/636]	Time  0.502 ( 0.540)	Data  0.001 ( 0.012)	Loss 4.2234e-01 (4.6423e-01)	Acc@1  81.22 ( 78.53)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[347/636]	Time  0.502 ( 0.540)	Data  0.001 ( 0.012)	Loss 4.2273e-01 (4.6412e-01)	Acc@1  81.16 ( 78.53)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[348/636]	Time  0.501 ( 0.540)	Data  0.001 ( 0.012)	Loss 4.1849e-01 (4.6398e-01)	Acc@1  81.07 ( 78.54)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[349/636]	Time  0.501 ( 0.540)	Data  0.000 ( 0.012)	Loss 4.2446e-01 (4.6387e-01)	Acc@1  81.22 ( 78.55)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[350/636]	Time  0.501 ( 0.539)	Data  0.000 ( 0.012)	Loss 4.4053e-01 (4.6380e-01)	Acc@1  80.21 ( 78.55)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[351/636]	Time  0.501 ( 0.539)	Data  0.001 ( 0.012)	Loss 4.3744e-01 (4.6373e-01)	Acc@1  80.56 ( 78.56)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[352/636]	Time  0.502 ( 0.539)	Data  0.000 ( 0.012)	Loss 4.2716e-01 (4.6363e-01)	Acc@1  80.81 ( 78.57)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[353/636]	Time  0.502 ( 0.539)	Data  0.001 ( 0.012)	Loss 4.1909e-01 (4.6350e-01)	Acc@1  81.41 ( 78.57)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[354/636]	Time  0.502 ( 0.539)	Data  0.000 ( 0.012)	Loss 4.2589e-01 (4.6339e-01)	Acc@1  81.22 ( 78.58)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[355/636]	Time  0.502 ( 0.539)	Data  0.000 ( 0.012)	Loss 4.1906e-01 (4.6327e-01)	Acc@1  81.43 ( 78.59)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[356/636]	Time  0.502 ( 0.539)	Data  0.000 ( 0.012)	Loss 4.1968e-01 (4.6315e-01)	Acc@1  81.20 ( 78.60)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[357/636]	Time  0.502 ( 0.539)	Data  0.000 ( 0.012)	Loss 4.2722e-01 (4.6305e-01)	Acc@1  80.94 ( 78.60)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[358/636]	Time  0.502 ( 0.539)	Data  0.000 ( 0.012)	Loss 4.1890e-01 (4.6292e-01)	Acc@1  81.19 ( 78.61)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[359/636]	Time  0.501 ( 0.539)	Data  0.001 ( 0.012)	Loss 4.2140e-01 (4.6281e-01)	Acc@1  81.43 ( 78.62)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[360/636]	Time  0.501 ( 0.538)	Data  0.001 ( 0.012)	Loss 4.2264e-01 (4.6270e-01)	Acc@1  81.46 ( 78.63)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[361/636]	Time  0.502 ( 0.538)	Data  0.001 ( 0.011)	Loss 4.3015e-01 (4.6261e-01)	Acc@1  80.89 ( 78.63)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[362/636]	Time  0.502 ( 0.538)	Data  0.001 ( 0.011)	Loss 4.2076e-01 (4.6249e-01)	Acc@1  81.18 ( 78.64)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[363/636]	Time  0.502 ( 0.538)	Data  0.001 ( 0.011)	Loss 4.3135e-01 (4.6241e-01)	Acc@1  80.68 ( 78.64)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[364/636]	Time  0.502 ( 0.538)	Data  0.001 ( 0.011)	Loss 4.1810e-01 (4.6229e-01)	Acc@1  81.65 ( 78.65)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[365/636]	Time  0.502 ( 0.538)	Data  0.000 ( 0.011)	Loss 4.3154e-01 (4.6220e-01)	Acc@1  80.57 ( 78.66)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[366/636]	Time  0.502 ( 0.538)	Data  0.001 ( 0.011)	Loss 4.2727e-01 (4.6211e-01)	Acc@1  80.93 ( 78.66)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[367/636]	Time  0.502 ( 0.538)	Data  0.001 ( 0.011)	Loss 4.1576e-01 (4.6198e-01)	Acc@1  81.28 ( 78.67)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[368/636]	Time  0.502 ( 0.538)	Data  0.001 ( 0.011)	Loss 4.3183e-01 (4.6190e-01)	Acc@1  80.62 ( 78.68)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[369/636]	Time  0.501 ( 0.538)	Data  0.000 ( 0.011)	Loss 4.2578e-01 (4.6180e-01)	Acc@1  81.05 ( 78.68)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[370/636]	Time  0.501 ( 0.537)	Data  0.000 ( 0.011)	Loss 4.2090e-01 (4.6169e-01)	Acc@1  81.25 ( 78.69)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[371/636]	Time  0.502 ( 0.537)	Data  0.001 ( 0.011)	Loss 4.1275e-01 (4.6156e-01)	Acc@1  81.54 ( 78.70)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[372/636]	Time  0.502 ( 0.537)	Data  0.001 ( 0.011)	Loss 4.2748e-01 (4.6147e-01)	Acc@1  80.86 ( 78.70)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[373/636]	Time  0.502 ( 0.537)	Data  0.001 ( 0.011)	Loss 4.3057e-01 (4.6139e-01)	Acc@1  81.04 ( 78.71)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[374/636]	Time  0.502 ( 0.537)	Data  0.000 ( 0.011)	Loss 4.3267e-01 (4.6131e-01)	Acc@1  80.48 ( 78.71)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[375/636]	Time  0.502 ( 0.537)	Data  0.000 ( 0.011)	Loss 4.2435e-01 (4.6121e-01)	Acc@1  80.92 ( 78.72)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[376/636]	Time  0.502 ( 0.537)	Data  0.000 ( 0.011)	Loss 4.2793e-01 (4.6112e-01)	Acc@1  80.81 ( 78.73)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[377/636]	Time  0.502 ( 0.537)	Data  0.000 ( 0.011)	Loss 4.2925e-01 (4.6104e-01)	Acc@1  80.34 ( 78.73)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[378/636]	Time  0.502 ( 0.537)	Data  0.001 ( 0.011)	Loss 4.2494e-01 (4.6094e-01)	Acc@1  80.81 ( 78.74)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[379/636]	Time  0.501 ( 0.537)	Data  0.000 ( 0.011)	Loss 4.3365e-01 (4.6087e-01)	Acc@1  80.83 ( 78.74)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[380/636]	Time  0.501 ( 0.537)	Data  0.001 ( 0.011)	Loss 4.3826e-01 (4.6081e-01)	Acc@1  80.77 ( 78.75)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[381/636]	Time  0.501 ( 0.536)	Data  0.000 ( 0.011)	Loss 4.3056e-01 (4.6073e-01)	Acc@1  80.53 ( 78.75)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[382/636]	Time  0.501 ( 0.536)	Data  0.000 ( 0.011)	Loss 4.2131e-01 (4.6063e-01)	Acc@1  81.28 ( 78.76)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[383/636]	Time  0.502 ( 0.536)	Data  0.001 ( 0.011)	Loss 4.3557e-01 (4.6056e-01)	Acc@1  79.58 ( 78.76)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[384/636]	Time  0.502 ( 0.536)	Data  0.001 ( 0.011)	Loss 4.1643e-01 (4.6045e-01)	Acc@1  81.63 ( 78.77)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[385/636]	Time  0.501 ( 0.536)	Data  0.000 ( 0.011)	Loss 4.2837e-01 (4.6037e-01)	Acc@1  80.62 ( 78.77)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[386/636]	Time  0.502 ( 0.536)	Data  0.001 ( 0.011)	Loss 4.2302e-01 (4.6027e-01)	Acc@1  81.47 ( 78.78)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[387/636]	Time  0.502 ( 0.536)	Data  0.000 ( 0.011)	Loss 4.1083e-01 (4.6014e-01)	Acc@1  81.79 ( 78.79)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[388/636]	Time  0.502 ( 0.536)	Data  0.000 ( 0.011)	Loss 4.2430e-01 (4.6005e-01)	Acc@1  81.01 ( 78.79)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[389/636]	Time  0.502 ( 0.536)	Data  0.001 ( 0.011)	Loss 4.2510e-01 (4.5996e-01)	Acc@1  81.33 ( 78.80)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[390/636]	Time  0.502 ( 0.536)	Data  0.001 ( 0.011)	Loss 4.1036e-01 (4.5983e-01)	Acc@1  82.37 ( 78.81)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[391/636]	Time  0.501 ( 0.536)	Data  0.001 ( 0.011)	Loss 4.1510e-01 (4.5972e-01)	Acc@1  81.71 ( 78.82)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[392/636]	Time  0.501 ( 0.535)	Data  0.001 ( 0.011)	Loss 4.1559e-01 (4.5961e-01)	Acc@1  81.47 ( 78.82)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[393/636]	Time  0.501 ( 0.535)	Data  0.001 ( 0.011)	Loss 4.2201e-01 (4.5951e-01)	Acc@1  81.39 ( 78.83)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[394/636]	Time  0.502 ( 0.535)	Data  0.000 ( 0.011)	Loss 4.2636e-01 (4.5943e-01)	Acc@1  80.65 ( 78.83)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[395/636]	Time  0.502 ( 0.535)	Data  0.000 ( 0.011)	Loss 4.3289e-01 (4.5936e-01)	Acc@1  80.58 ( 78.84)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[396/636]	Time  0.501 ( 0.535)	Data  0.001 ( 0.011)	Loss 4.2530e-01 (4.5928e-01)	Acc@1  81.06 ( 78.84)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[397/636]	Time  0.502 ( 0.535)	Data  0.000 ( 0.010)	Loss 4.2669e-01 (4.5919e-01)	Acc@1  80.94 ( 78.85)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[398/636]	Time  0.502 ( 0.535)	Data  0.001 ( 0.010)	Loss 4.2059e-01 (4.5910e-01)	Acc@1  81.30 ( 78.86)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[399/636]	Time  0.502 ( 0.535)	Data  0.001 ( 0.010)	Loss 4.2966e-01 (4.5902e-01)	Acc@1  80.80 ( 78.86)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[400/636]	Time  0.502 ( 0.535)	Data  0.000 ( 0.010)	Loss 4.2257e-01 (4.5893e-01)	Acc@1  80.96 ( 78.87)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[401/636]	Time  0.501 ( 0.535)	Data  0.001 ( 0.010)	Loss 4.1216e-01 (4.5882e-01)	Acc@1  81.65 ( 78.87)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[402/636]	Time  0.502 ( 0.535)	Data  0.001 ( 0.010)	Loss 4.2505e-01 (4.5873e-01)	Acc@1  80.87 ( 78.88)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[403/636]	Time  0.501 ( 0.535)	Data  0.000 ( 0.010)	Loss 4.3633e-01 (4.5868e-01)	Acc@1  80.50 ( 78.88)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[404/636]	Time  0.501 ( 0.534)	Data  0.001 ( 0.010)	Loss 4.2700e-01 (4.5860e-01)	Acc@1  80.87 ( 78.89)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[405/636]	Time  0.502 ( 0.534)	Data  0.001 ( 0.010)	Loss 4.2549e-01 (4.5852e-01)	Acc@1  81.30 ( 78.89)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[406/636]	Time  0.502 ( 0.534)	Data  0.001 ( 0.010)	Loss 4.2386e-01 (4.5843e-01)	Acc@1  80.99 ( 78.90)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[407/636]	Time  0.502 ( 0.534)	Data  0.001 ( 0.010)	Loss 4.2451e-01 (4.5835e-01)	Acc@1  80.69 ( 78.90)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[408/636]	Time  0.502 ( 0.534)	Data  0.001 ( 0.010)	Loss 4.2998e-01 (4.5828e-01)	Acc@1  80.83 ( 78.91)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[409/636]	Time  0.502 ( 0.534)	Data  0.001 ( 0.010)	Loss 4.0956e-01 (4.5816e-01)	Acc@1  81.79 ( 78.91)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[410/636]	Time  0.502 ( 0.534)	Data  0.000 ( 0.010)	Loss 4.2743e-01 (4.5809e-01)	Acc@1  81.25 ( 78.92)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[411/636]	Time  0.501 ( 0.534)	Data  0.000 ( 0.010)	Loss 4.1258e-01 (4.5798e-01)	Acc@1  81.66 ( 78.93)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[412/636]	Time  0.501 ( 0.534)	Data  0.000 ( 0.010)	Loss 4.2998e-01 (4.5791e-01)	Acc@1  80.97 ( 78.93)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[413/636]	Time  0.501 ( 0.534)	Data  0.001 ( 0.010)	Loss 4.1990e-01 (4.5782e-01)	Acc@1  81.19 ( 78.94)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[414/636]	Time  0.501 ( 0.534)	Data  0.001 ( 0.010)	Loss 4.3563e-01 (4.5776e-01)	Acc@1  80.27 ( 78.94)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[415/636]	Time  0.500 ( 0.534)	Data  0.001 ( 0.010)	Loss 4.2285e-01 (4.5768e-01)	Acc@1  80.47 ( 78.94)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[416/636]	Time  0.500 ( 0.533)	Data  0.000 ( 0.010)	Loss 4.2504e-01 (4.5760e-01)	Acc@1  81.04 ( 78.95)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[417/636]	Time  0.501 ( 0.533)	Data  0.001 ( 0.010)	Loss 4.1491e-01 (4.5750e-01)	Acc@1  81.44 ( 78.95)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[418/636]	Time  0.502 ( 0.533)	Data  0.001 ( 0.010)	Loss 4.2372e-01 (4.5742e-01)	Acc@1  80.70 ( 78.96)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[419/636]	Time  0.502 ( 0.533)	Data  0.001 ( 0.010)	Loss 4.2634e-01 (4.5734e-01)	Acc@1  81.23 ( 78.96)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[420/636]	Time  0.501 ( 0.533)	Data  0.001 ( 0.010)	Loss 4.1762e-01 (4.5725e-01)	Acc@1  81.40 ( 78.97)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[421/636]	Time  0.501 ( 0.533)	Data  0.000 ( 0.010)	Loss 4.2133e-01 (4.5716e-01)	Acc@1  81.40 ( 78.97)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[422/636]	Time  0.502 ( 0.533)	Data  0.001 ( 0.010)	Loss 4.3437e-01 (4.5711e-01)	Acc@1  80.56 ( 78.98)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[423/636]	Time  0.501 ( 0.533)	Data  0.001 ( 0.010)	Loss 4.2667e-01 (4.5704e-01)	Acc@1  81.05 ( 78.98)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[424/636]	Time  0.502 ( 0.533)	Data  0.001 ( 0.010)	Loss 4.2792e-01 (4.5697e-01)	Acc@1  81.14 ( 78.99)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[425/636]	Time  0.501 ( 0.533)	Data  0.001 ( 0.010)	Loss 4.1769e-01 (4.5688e-01)	Acc@1  81.21 ( 78.99)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[426/636]	Time  0.502 ( 0.533)	Data  0.000 ( 0.010)	Loss 4.2700e-01 (4.5681e-01)	Acc@1  80.48 ( 79.00)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[427/636]	Time  0.501 ( 0.533)	Data  0.001 ( 0.010)	Loss 4.2295e-01 (4.5673e-01)	Acc@1  81.18 ( 79.00)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[428/636]	Time  0.501 ( 0.533)	Data  0.000 ( 0.010)	Loss 4.1998e-01 (4.5664e-01)	Acc@1  81.13 ( 79.01)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[429/636]	Time  0.501 ( 0.533)	Data  0.001 ( 0.010)	Loss 4.3073e-01 (4.5658e-01)	Acc@1  80.50 ( 79.01)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[430/636]	Time  0.500 ( 0.532)	Data  0.001 ( 0.010)	Loss 4.3094e-01 (4.5652e-01)	Acc@1  81.15 ( 79.02)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[431/636]	Time  0.501 ( 0.532)	Data  0.001 ( 0.010)	Loss 4.2374e-01 (4.5645e-01)	Acc@1  81.39 ( 79.02)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[432/636]	Time  0.501 ( 0.532)	Data  0.000 ( 0.010)	Loss 4.2731e-01 (4.5638e-01)	Acc@1  80.68 ( 79.03)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[433/636]	Time  0.502 ( 0.532)	Data  0.001 ( 0.010)	Loss 4.1984e-01 (4.5630e-01)	Acc@1  81.49 ( 79.03)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[434/636]	Time  0.501 ( 0.532)	Data  0.001 ( 0.010)	Loss 4.1811e-01 (4.5621e-01)	Acc@1  81.15 ( 79.04)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[435/636]	Time  0.501 ( 0.532)	Data  0.001 ( 0.010)	Loss 4.1189e-01 (4.5611e-01)	Acc@1  81.56 ( 79.04)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[436/636]	Time  0.502 ( 0.532)	Data  0.001 ( 0.010)	Loss 4.3293e-01 (4.5605e-01)	Acc@1  80.27 ( 79.04)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[437/636]	Time  0.502 ( 0.532)	Data  0.001 ( 0.010)	Loss 4.2342e-01 (4.5598e-01)	Acc@1  80.96 ( 79.05)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[438/636]	Time  0.501 ( 0.532)	Data  0.001 ( 0.010)	Loss 4.1738e-01 (4.5589e-01)	Acc@1  81.52 ( 79.05)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[439/636]	Time  0.501 ( 0.532)	Data  0.001 ( 0.010)	Loss 4.2593e-01 (4.5582e-01)	Acc@1  80.63 ( 79.06)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[440/636]	Time  0.501 ( 0.532)	Data  0.001 ( 0.010)	Loss 4.2016e-01 (4.5574e-01)	Acc@1  81.32 ( 79.06)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[441/636]	Time  0.501 ( 0.532)	Data  0.001 ( 0.010)	Loss 4.1715e-01 (4.5565e-01)	Acc@1  81.69 ( 79.07)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[442/636]	Time  0.501 ( 0.532)	Data  0.000 ( 0.009)	Loss 4.2138e-01 (4.5558e-01)	Acc@1  81.29 ( 79.07)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[443/636]	Time  0.501 ( 0.532)	Data  0.000 ( 0.009)	Loss 4.1424e-01 (4.5548e-01)	Acc@1  81.43 ( 79.08)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[444/636]	Time  0.501 ( 0.531)	Data  0.001 ( 0.009)	Loss 4.2323e-01 (4.5541e-01)	Acc@1  81.05 ( 79.08)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[445/636]	Time  0.501 ( 0.531)	Data  0.000 ( 0.009)	Loss 4.2124e-01 (4.5533e-01)	Acc@1  80.93 ( 79.09)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[446/636]	Time  0.501 ( 0.531)	Data  0.001 ( 0.009)	Loss 4.2207e-01 (4.5526e-01)	Acc@1  81.43 ( 79.09)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[447/636]	Time  0.501 ( 0.531)	Data  0.001 ( 0.009)	Loss 4.2675e-01 (4.5520e-01)	Acc@1  80.84 ( 79.10)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[448/636]	Time  0.501 ( 0.531)	Data  0.001 ( 0.009)	Loss 4.2810e-01 (4.5514e-01)	Acc@1  80.69 ( 79.10)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[449/636]	Time  0.501 ( 0.531)	Data  0.001 ( 0.009)	Loss 4.1730e-01 (4.5505e-01)	Acc@1  81.40 ( 79.11)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[450/636]	Time  0.502 ( 0.531)	Data  0.001 ( 0.009)	Loss 4.2082e-01 (4.5498e-01)	Acc@1  81.22 ( 79.11)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[451/636]	Time  0.501 ( 0.531)	Data  0.001 ( 0.009)	Loss 4.2038e-01 (4.5490e-01)	Acc@1  81.01 ( 79.11)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[452/636]	Time  0.502 ( 0.531)	Data  0.000 ( 0.009)	Loss 4.1628e-01 (4.5481e-01)	Acc@1  81.36 ( 79.12)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[453/636]	Time  0.502 ( 0.531)	Data  0.000 ( 0.009)	Loss 4.2272e-01 (4.5474e-01)	Acc@1  80.94 ( 79.12)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[454/636]	Time  0.502 ( 0.531)	Data  0.001 ( 0.009)	Loss 4.2699e-01 (4.5468e-01)	Acc@1  80.90 ( 79.13)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[455/636]	Time  0.501 ( 0.531)	Data  0.001 ( 0.009)	Loss 4.1182e-01 (4.5459e-01)	Acc@1  81.87 ( 79.13)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[456/636]	Time  0.501 ( 0.531)	Data  0.001 ( 0.009)	Loss 4.2909e-01 (4.5453e-01)	Acc@1  80.31 ( 79.14)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[457/636]	Time  0.501 ( 0.531)	Data  0.000 ( 0.009)	Loss 4.2367e-01 (4.5447e-01)	Acc@1  80.87 ( 79.14)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[458/636]	Time  0.501 ( 0.531)	Data  0.001 ( 0.009)	Loss 4.2992e-01 (4.5441e-01)	Acc@1  80.85 ( 79.14)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[459/636]	Time  0.501 ( 0.530)	Data  0.000 ( 0.009)	Loss 4.2023e-01 (4.5434e-01)	Acc@1  81.30 ( 79.15)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[460/636]	Time  0.519 ( 0.530)	Data  0.003 ( 0.009)	Loss 4.3781e-01 (4.5430e-01)	Acc@1  80.53 ( 79.15)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[461/636]	Time  0.505 ( 0.530)	Data  0.003 ( 0.009)	Loss 4.2303e-01 (4.5423e-01)	Acc@1  81.27 ( 79.16)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[462/636]	Time  0.503 ( 0.530)	Data  0.002 ( 0.009)	Loss 4.3034e-01 (4.5418e-01)	Acc@1  80.89 ( 79.16)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[463/636]	Time  0.508 ( 0.530)	Data  0.002 ( 0.009)	Loss 4.2556e-01 (4.5412e-01)	Acc@1  80.79 ( 79.16)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[464/636]	Time  0.501 ( 0.530)	Data  0.001 ( 0.009)	Loss 4.2577e-01 (4.5406e-01)	Acc@1  81.14 ( 79.17)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[465/636]	Time  0.501 ( 0.530)	Data  0.000 ( 0.009)	Loss 4.1713e-01 (4.5398e-01)	Acc@1  81.45 ( 79.17)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[466/636]	Time  0.501 ( 0.530)	Data  0.000 ( 0.009)	Loss 4.2356e-01 (4.5392e-01)	Acc@1  81.01 ( 79.18)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[467/636]	Time  0.501 ( 0.530)	Data  0.001 ( 0.009)	Loss 4.1938e-01 (4.5384e-01)	Acc@1  81.22 ( 79.18)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[468/636]	Time  0.501 ( 0.530)	Data  0.000 ( 0.009)	Loss 4.0994e-01 (4.5375e-01)	Acc@1  81.72 ( 79.19)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[469/636]	Time  0.502 ( 0.530)	Data  0.001 ( 0.009)	Loss 4.1634e-01 (4.5367e-01)	Acc@1  81.61 ( 79.19)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[470/636]	Time  0.501 ( 0.530)	Data  0.000 ( 0.009)	Loss 4.2512e-01 (4.5361e-01)	Acc@1  81.38 ( 79.20)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[471/636]	Time  0.501 ( 0.530)	Data  0.000 ( 0.009)	Loss 4.2253e-01 (4.5354e-01)	Acc@1  81.16 ( 79.20)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[472/636]	Time  0.501 ( 0.530)	Data  0.000 ( 0.009)	Loss 4.1828e-01 (4.5347e-01)	Acc@1  81.24 ( 79.20)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[473/636]	Time  0.501 ( 0.530)	Data  0.000 ( 0.009)	Loss 4.2515e-01 (4.5341e-01)	Acc@1  80.95 ( 79.21)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[474/636]	Time  0.502 ( 0.530)	Data  0.000 ( 0.009)	Loss 4.2961e-01 (4.5336e-01)	Acc@1  81.04 ( 79.21)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[475/636]	Time  0.502 ( 0.530)	Data  0.001 ( 0.009)	Loss 4.1763e-01 (4.5328e-01)	Acc@1  81.22 ( 79.22)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[476/636]	Time  0.502 ( 0.530)	Data  0.001 ( 0.009)	Loss 4.1854e-01 (4.5321e-01)	Acc@1  81.82 ( 79.22)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[477/636]	Time  0.501 ( 0.529)	Data  0.001 ( 0.009)	Loss 4.2049e-01 (4.5314e-01)	Acc@1  81.57 ( 79.23)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[478/636]	Time  0.501 ( 0.529)	Data  0.000 ( 0.009)	Loss 4.2213e-01 (4.5308e-01)	Acc@1  81.30 ( 79.23)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[479/636]	Time  0.501 ( 0.529)	Data  0.001 ( 0.009)	Loss 4.3344e-01 (4.5304e-01)	Acc@1  80.51 ( 79.23)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[480/636]	Time  0.501 ( 0.529)	Data  0.000 ( 0.009)	Loss 4.2431e-01 (4.5298e-01)	Acc@1  80.60 ( 79.24)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[481/636]	Time  0.501 ( 0.529)	Data  0.001 ( 0.009)	Loss 4.3478e-01 (4.5294e-01)	Acc@1  80.36 ( 79.24)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[482/636]	Time  0.501 ( 0.529)	Data  0.001 ( 0.009)	Loss 4.2022e-01 (4.5287e-01)	Acc@1  80.76 ( 79.24)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[483/636]	Time  0.502 ( 0.529)	Data  0.000 ( 0.009)	Loss 4.2749e-01 (4.5282e-01)	Acc@1  81.44 ( 79.25)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[484/636]	Time  0.502 ( 0.529)	Data  0.001 ( 0.009)	Loss 4.2795e-01 (4.5277e-01)	Acc@1  81.10 ( 79.25)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[485/636]	Time  0.501 ( 0.529)	Data  0.001 ( 0.009)	Loss 4.1986e-01 (4.5270e-01)	Acc@1  80.72 ( 79.25)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[486/636]	Time  0.502 ( 0.529)	Data  0.001 ( 0.009)	Loss 4.2411e-01 (4.5264e-01)	Acc@1  81.12 ( 79.26)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[487/636]	Time  0.501 ( 0.529)	Data  0.001 ( 0.009)	Loss 4.2688e-01 (4.5259e-01)	Acc@1  81.21 ( 79.26)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[488/636]	Time  0.501 ( 0.529)	Data  0.001 ( 0.009)	Loss 4.1954e-01 (4.5252e-01)	Acc@1  81.39 ( 79.27)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[489/636]	Time  0.502 ( 0.529)	Data  0.001 ( 0.009)	Loss 4.2471e-01 (4.5246e-01)	Acc@1  81.45 ( 79.27)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[490/636]	Time  0.501 ( 0.529)	Data  0.000 ( 0.009)	Loss 4.2311e-01 (4.5240e-01)	Acc@1  80.64 ( 79.27)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[491/636]	Time  0.501 ( 0.529)	Data  0.001 ( 0.009)	Loss 4.2386e-01 (4.5235e-01)	Acc@1  80.91 ( 79.28)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[492/636]	Time  0.501 ( 0.529)	Data  0.000 ( 0.009)	Loss 4.2785e-01 (4.5230e-01)	Acc@1  80.82 ( 79.28)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[493/636]	Time  0.501 ( 0.529)	Data  0.001 ( 0.009)	Loss 4.3057e-01 (4.5225e-01)	Acc@1  80.67 ( 79.28)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[494/636]	Time  0.501 ( 0.528)	Data  0.000 ( 0.009)	Loss 4.2168e-01 (4.5219e-01)	Acc@1  81.00 ( 79.29)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[495/636]	Time  0.501 ( 0.528)	Data  0.001 ( 0.009)	Loss 4.3359e-01 (4.5215e-01)	Acc@1  80.86 ( 79.29)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[496/636]	Time  0.501 ( 0.528)	Data  0.000 ( 0.009)	Loss 4.1747e-01 (4.5208e-01)	Acc@1  81.37 ( 79.29)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[497/636]	Time  0.502 ( 0.528)	Data  0.001 ( 0.009)	Loss 4.1526e-01 (4.5201e-01)	Acc@1  81.31 ( 79.30)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[498/636]	Time  0.502 ( 0.528)	Data  0.001 ( 0.008)	Loss 4.4428e-01 (4.5199e-01)	Acc@1  80.17 ( 79.30)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[499/636]	Time  0.501 ( 0.528)	Data  0.001 ( 0.008)	Loss 4.1887e-01 (4.5193e-01)	Acc@1  81.44 ( 79.30)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[500/636]	Time  0.501 ( 0.528)	Data  0.000 ( 0.008)	Loss 4.2555e-01 (4.5187e-01)	Acc@1  80.82 ( 79.31)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[501/636]	Time  0.502 ( 0.528)	Data  0.000 ( 0.008)	Loss 4.0363e-01 (4.5178e-01)	Acc@1  82.15 ( 79.31)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[502/636]	Time  0.502 ( 0.528)	Data  0.000 ( 0.008)	Loss 4.1587e-01 (4.5171e-01)	Acc@1  81.56 ( 79.32)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[503/636]	Time  0.502 ( 0.528)	Data  0.000 ( 0.008)	Loss 4.1249e-01 (4.5163e-01)	Acc@1  81.61 ( 79.32)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[504/636]	Time  0.501 ( 0.528)	Data  0.000 ( 0.008)	Loss 4.2774e-01 (4.5158e-01)	Acc@1  80.78 ( 79.32)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[505/636]	Time  0.501 ( 0.528)	Data  0.000 ( 0.008)	Loss 4.2199e-01 (4.5152e-01)	Acc@1  81.92 ( 79.33)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[506/636]	Time  0.501 ( 0.528)	Data  0.000 ( 0.008)	Loss 4.2094e-01 (4.5146e-01)	Acc@1  81.28 ( 79.33)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[507/636]	Time  0.501 ( 0.528)	Data  0.000 ( 0.008)	Loss 4.1727e-01 (4.5140e-01)	Acc@1  81.21 ( 79.34)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[508/636]	Time  0.500 ( 0.528)	Data  0.000 ( 0.008)	Loss 4.2537e-01 (4.5134e-01)	Acc@1  81.28 ( 79.34)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[509/636]	Time  0.501 ( 0.528)	Data  0.000 ( 0.008)	Loss 4.2992e-01 (4.5130e-01)	Acc@1  80.45 ( 79.34)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[510/636]	Time  0.501 ( 0.528)	Data  0.000 ( 0.008)	Loss 4.3304e-01 (4.5127e-01)	Acc@1  80.45 ( 79.34)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[511/636]	Time  0.501 ( 0.528)	Data  0.000 ( 0.008)	Loss 4.2805e-01 (4.5122e-01)	Acc@1  81.73 ( 79.35)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[512/636]	Time  0.502 ( 0.528)	Data  0.000 ( 0.008)	Loss 4.3544e-01 (4.5119e-01)	Acc@1  80.76 ( 79.35)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[513/636]	Time  0.501 ( 0.527)	Data  0.001 ( 0.008)	Loss 4.1537e-01 (4.5112e-01)	Acc@1  81.07 ( 79.35)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[514/636]	Time  0.501 ( 0.527)	Data  0.000 ( 0.008)	Loss 4.2319e-01 (4.5107e-01)	Acc@1  80.71 ( 79.36)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[515/636]	Time  0.501 ( 0.527)	Data  0.001 ( 0.008)	Loss 4.2153e-01 (4.5101e-01)	Acc@1  81.11 ( 79.36)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[516/636]	Time  0.501 ( 0.527)	Data  0.001 ( 0.008)	Loss 4.3131e-01 (4.5097e-01)	Acc@1  81.08 ( 79.36)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[517/636]	Time  0.502 ( 0.527)	Data  0.000 ( 0.008)	Loss 4.2338e-01 (4.5092e-01)	Acc@1  80.90 ( 79.37)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[518/636]	Time  0.501 ( 0.527)	Data  0.000 ( 0.008)	Loss 4.1607e-01 (4.5085e-01)	Acc@1  81.78 ( 79.37)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[519/636]	Time  0.501 ( 0.527)	Data  0.000 ( 0.008)	Loss 4.3014e-01 (4.5081e-01)	Acc@1  80.53 ( 79.37)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[520/636]	Time  0.501 ( 0.527)	Data  0.000 ( 0.008)	Loss 4.1834e-01 (4.5075e-01)	Acc@1  81.11 ( 79.38)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[521/636]	Time  0.500 ( 0.527)	Data  0.000 ( 0.008)	Loss 4.2043e-01 (4.5069e-01)	Acc@1  81.43 ( 79.38)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[522/636]	Time  0.501 ( 0.527)	Data  0.000 ( 0.008)	Loss 4.2419e-01 (4.5064e-01)	Acc@1  80.57 ( 79.38)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[523/636]	Time  0.501 ( 0.527)	Data  0.000 ( 0.008)	Loss 4.2238e-01 (4.5059e-01)	Acc@1  80.72 ( 79.39)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[524/636]	Time  0.501 ( 0.527)	Data  0.000 ( 0.008)	Loss 4.2382e-01 (4.5054e-01)	Acc@1  80.91 ( 79.39)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[525/636]	Time  0.501 ( 0.527)	Data  0.001 ( 0.008)	Loss 4.2183e-01 (4.5048e-01)	Acc@1  81.35 ( 79.39)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[526/636]	Time  0.501 ( 0.527)	Data  0.001 ( 0.008)	Loss 4.2664e-01 (4.5044e-01)	Acc@1  81.03 ( 79.40)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[527/636]	Time  0.502 ( 0.527)	Data  0.001 ( 0.008)	Loss 4.1758e-01 (4.5037e-01)	Acc@1  81.74 ( 79.40)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[528/636]	Time  0.501 ( 0.527)	Data  0.000 ( 0.008)	Loss 4.2361e-01 (4.5032e-01)	Acc@1  81.04 ( 79.40)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[529/636]	Time  0.502 ( 0.527)	Data  0.001 ( 0.008)	Loss 4.1513e-01 (4.5026e-01)	Acc@1  81.17 ( 79.41)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[530/636]	Time  0.501 ( 0.527)	Data  0.001 ( 0.008)	Loss 4.1377e-01 (4.5019e-01)	Acc@1  81.62 ( 79.41)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[531/636]	Time  0.502 ( 0.527)	Data  0.000 ( 0.008)	Loss 4.2855e-01 (4.5015e-01)	Acc@1  80.76 ( 79.41)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[532/636]	Time  0.502 ( 0.527)	Data  0.001 ( 0.008)	Loss 4.2846e-01 (4.5011e-01)	Acc@1  81.04 ( 79.42)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[533/636]	Time  0.501 ( 0.526)	Data  0.001 ( 0.008)	Loss 4.2756e-01 (4.5006e-01)	Acc@1  81.01 ( 79.42)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[534/636]	Time  0.501 ( 0.526)	Data  0.001 ( 0.008)	Loss 4.2095e-01 (4.5001e-01)	Acc@1  81.13 ( 79.42)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[535/636]	Time  0.501 ( 0.526)	Data  0.001 ( 0.008)	Loss 4.1401e-01 (4.4994e-01)	Acc@1  81.12 ( 79.43)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[536/636]	Time  0.501 ( 0.526)	Data  0.001 ( 0.008)	Loss 4.1884e-01 (4.4988e-01)	Acc@1  81.35 ( 79.43)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[537/636]	Time  0.501 ( 0.526)	Data  0.001 ( 0.008)	Loss 4.1755e-01 (4.4982e-01)	Acc@1  81.06 ( 79.43)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[538/636]	Time  0.501 ( 0.526)	Data  0.000 ( 0.008)	Loss 4.2528e-01 (4.4978e-01)	Acc@1  80.63 ( 79.43)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[539/636]	Time  0.501 ( 0.526)	Data  0.000 ( 0.008)	Loss 4.2103e-01 (4.4973e-01)	Acc@1  81.31 ( 79.44)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[540/636]	Time  0.501 ( 0.526)	Data  0.000 ( 0.008)	Loss 4.2780e-01 (4.4969e-01)	Acc@1  80.99 ( 79.44)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[541/636]	Time  0.501 ( 0.526)	Data  0.001 ( 0.008)	Loss 4.1366e-01 (4.4962e-01)	Acc@1  81.37 ( 79.44)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[542/636]	Time  0.501 ( 0.526)	Data  0.001 ( 0.008)	Loss 4.2593e-01 (4.4958e-01)	Acc@1  80.97 ( 79.45)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[543/636]	Time  0.501 ( 0.526)	Data  0.001 ( 0.008)	Loss 4.1754e-01 (4.4952e-01)	Acc@1  81.26 ( 79.45)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[544/636]	Time  0.501 ( 0.526)	Data  0.000 ( 0.008)	Loss 4.1913e-01 (4.4946e-01)	Acc@1  81.56 ( 79.45)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[545/636]	Time  0.502 ( 0.526)	Data  0.001 ( 0.008)	Loss 4.4098e-01 (4.4944e-01)	Acc@1  80.85 ( 79.46)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[546/636]	Time  0.502 ( 0.526)	Data  0.001 ( 0.008)	Loss 4.0995e-01 (4.4937e-01)	Acc@1  81.87 ( 79.46)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[547/636]	Time  0.501 ( 0.526)	Data  0.000 ( 0.008)	Loss 4.2653e-01 (4.4933e-01)	Acc@1  80.84 ( 79.46)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[548/636]	Time  0.501 ( 0.526)	Data  0.001 ( 0.008)	Loss 4.2249e-01 (4.4928e-01)	Acc@1  81.30 ( 79.47)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[549/636]	Time  0.501 ( 0.526)	Data  0.001 ( 0.008)	Loss 4.0786e-01 (4.4921e-01)	Acc@1  81.53 ( 79.47)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[550/636]	Time  0.501 ( 0.526)	Data  0.001 ( 0.008)	Loss 4.2383e-01 (4.4916e-01)	Acc@1  80.73 ( 79.47)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[551/636]	Time  0.501 ( 0.526)	Data  0.001 ( 0.008)	Loss 4.1112e-01 (4.4909e-01)	Acc@1  82.05 ( 79.48)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[552/636]	Time  0.501 ( 0.526)	Data  0.001 ( 0.008)	Loss 4.1092e-01 (4.4902e-01)	Acc@1  81.47 ( 79.48)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[553/636]	Time  0.502 ( 0.526)	Data  0.001 ( 0.008)	Loss 4.2349e-01 (4.4898e-01)	Acc@1  80.89 ( 79.48)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[554/636]	Time  0.501 ( 0.526)	Data  0.000 ( 0.008)	Loss 4.1727e-01 (4.4892e-01)	Acc@1  81.65 ( 79.49)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[555/636]	Time  0.501 ( 0.525)	Data  0.001 ( 0.008)	Loss 4.1113e-01 (4.4885e-01)	Acc@1  81.79 ( 79.49)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[556/636]	Time  0.501 ( 0.525)	Data  0.000 ( 0.008)	Loss 4.1748e-01 (4.4880e-01)	Acc@1  81.45 ( 79.50)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[557/636]	Time  0.501 ( 0.525)	Data  0.000 ( 0.008)	Loss 4.1346e-01 (4.4873e-01)	Acc@1  81.95 ( 79.50)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[558/636]	Time  0.501 ( 0.525)	Data  0.000 ( 0.008)	Loss 4.2699e-01 (4.4869e-01)	Acc@1  81.13 ( 79.50)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[559/636]	Time  0.502 ( 0.525)	Data  0.001 ( 0.008)	Loss 4.2451e-01 (4.4865e-01)	Acc@1  80.83 ( 79.51)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[560/636]	Time  0.502 ( 0.525)	Data  0.000 ( 0.008)	Loss 4.2553e-01 (4.4861e-01)	Acc@1  80.71 ( 79.51)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[561/636]	Time  0.501 ( 0.525)	Data  0.000 ( 0.008)	Loss 4.1890e-01 (4.4856e-01)	Acc@1  81.02 ( 79.51)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[562/636]	Time  0.501 ( 0.525)	Data  0.001 ( 0.008)	Loss 4.1248e-01 (4.4849e-01)	Acc@1  81.53 ( 79.51)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[563/636]	Time  0.501 ( 0.525)	Data  0.001 ( 0.008)	Loss 4.1607e-01 (4.4843e-01)	Acc@1  81.22 ( 79.52)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[564/636]	Time  0.501 ( 0.525)	Data  0.000 ( 0.008)	Loss 4.2066e-01 (4.4839e-01)	Acc@1  81.73 ( 79.52)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[565/636]	Time  0.501 ( 0.525)	Data  0.000 ( 0.008)	Loss 4.2374e-01 (4.4834e-01)	Acc@1  81.00 ( 79.52)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[566/636]	Time  0.501 ( 0.525)	Data  0.000 ( 0.008)	Loss 4.2651e-01 (4.4830e-01)	Acc@1  80.86 ( 79.53)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[567/636]	Time  0.502 ( 0.525)	Data  0.001 ( 0.008)	Loss 4.2175e-01 (4.4826e-01)	Acc@1  81.50 ( 79.53)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[568/636]	Time  0.501 ( 0.525)	Data  0.000 ( 0.008)	Loss 4.1686e-01 (4.4820e-01)	Acc@1  80.89 ( 79.53)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[569/636]	Time  0.501 ( 0.525)	Data  0.000 ( 0.007)	Loss 4.2236e-01 (4.4816e-01)	Acc@1  80.93 ( 79.53)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[570/636]	Time  0.502 ( 0.525)	Data  0.001 ( 0.007)	Loss 4.1803e-01 (4.4810e-01)	Acc@1  81.64 ( 79.54)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[571/636]	Time  0.511 ( 0.525)	Data  0.011 ( 0.007)	Loss 4.2509e-01 (4.4806e-01)	Acc@1  80.88 ( 79.54)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[572/636]	Time  0.501 ( 0.525)	Data  0.000 ( 0.007)	Loss 4.2653e-01 (4.4803e-01)	Acc@1  81.08 ( 79.54)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[573/636]	Time  0.501 ( 0.525)	Data  0.000 ( 0.007)	Loss 4.1395e-01 (4.4797e-01)	Acc@1  81.70 ( 79.55)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[574/636]	Time  0.501 ( 0.525)	Data  0.000 ( 0.007)	Loss 4.1624e-01 (4.4791e-01)	Acc@1  81.66 ( 79.55)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[575/636]	Time  0.501 ( 0.525)	Data  0.000 ( 0.007)	Loss 4.2784e-01 (4.4788e-01)	Acc@1  81.42 ( 79.55)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[576/636]	Time  0.501 ( 0.525)	Data  0.000 ( 0.007)	Loss 4.2314e-01 (4.4783e-01)	Acc@1  81.29 ( 79.56)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[577/636]	Time  0.501 ( 0.525)	Data  0.000 ( 0.007)	Loss 4.2548e-01 (4.4779e-01)	Acc@1  80.71 ( 79.56)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[578/636]	Time  0.501 ( 0.525)	Data  0.000 ( 0.007)	Loss 4.1734e-01 (4.4774e-01)	Acc@1  81.44 ( 79.56)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[579/636]	Time  0.501 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.1965e-01 (4.4769e-01)	Acc@1  81.49 ( 79.57)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[580/636]	Time  0.501 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.2587e-01 (4.4766e-01)	Acc@1  80.81 ( 79.57)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[581/636]	Time  0.501 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.2137e-01 (4.4761e-01)	Acc@1  81.24 ( 79.57)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[582/636]	Time  0.500 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.2508e-01 (4.4757e-01)	Acc@1  80.95 ( 79.57)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[583/636]	Time  0.501 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.3015e-01 (4.4754e-01)	Acc@1  80.89 ( 79.57)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[584/636]	Time  0.501 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.1138e-01 (4.4748e-01)	Acc@1  81.65 ( 79.58)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[585/636]	Time  0.501 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.1376e-01 (4.4742e-01)	Acc@1  81.74 ( 79.58)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[586/636]	Time  0.501 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.2147e-01 (4.4738e-01)	Acc@1  81.18 ( 79.58)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[587/636]	Time  0.501 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.1997e-01 (4.4733e-01)	Acc@1  81.28 ( 79.59)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[588/636]	Time  0.501 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.2204e-01 (4.4729e-01)	Acc@1  81.53 ( 79.59)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[589/636]	Time  0.500 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.1169e-01 (4.4723e-01)	Acc@1  81.79 ( 79.59)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[590/636]	Time  0.501 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.1794e-01 (4.4718e-01)	Acc@1  81.88 ( 79.60)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[591/636]	Time  0.501 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.2336e-01 (4.4714e-01)	Acc@1  80.62 ( 79.60)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[592/636]	Time  0.500 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.1101e-01 (4.4708e-01)	Acc@1  81.83 ( 79.60)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[593/636]	Time  0.500 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.1616e-01 (4.4703e-01)	Acc@1  81.50 ( 79.61)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[594/636]	Time  0.500 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.2172e-01 (4.4698e-01)	Acc@1  81.11 ( 79.61)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[595/636]	Time  0.501 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.2011e-01 (4.4694e-01)	Acc@1  80.92 ( 79.61)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[596/636]	Time  0.501 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.2062e-01 (4.4689e-01)	Acc@1  81.12 ( 79.61)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[597/636]	Time  0.501 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.2073e-01 (4.4685e-01)	Acc@1  81.80 ( 79.62)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[598/636]	Time  0.501 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.0955e-01 (4.4679e-01)	Acc@1  81.75 ( 79.62)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[599/636]	Time  0.501 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.1289e-01 (4.4673e-01)	Acc@1  81.33 ( 79.62)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[600/636]	Time  0.501 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.2672e-01 (4.4670e-01)	Acc@1  81.07 ( 79.63)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[601/636]	Time  0.501 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.1227e-01 (4.4664e-01)	Acc@1  81.79 ( 79.63)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[602/636]	Time  0.501 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.2195e-01 (4.4660e-01)	Acc@1  81.01 ( 79.63)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[603/636]	Time  0.501 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.3101e-01 (4.4657e-01)	Acc@1  81.05 ( 79.64)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[604/636]	Time  0.501 ( 0.524)	Data  0.000 ( 0.007)	Loss 4.1880e-01 (4.4653e-01)	Acc@1  81.55 ( 79.64)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[605/636]	Time  0.501 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.2248e-01 (4.4649e-01)	Acc@1  81.89 ( 79.64)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[606/636]	Time  0.501 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.2225e-01 (4.4645e-01)	Acc@1  81.12 ( 79.64)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[607/636]	Time  0.501 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.1967e-01 (4.4640e-01)	Acc@1  80.98 ( 79.65)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[608/636]	Time  0.501 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.2055e-01 (4.4636e-01)	Acc@1  81.43 ( 79.65)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[609/636]	Time  0.501 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.0718e-01 (4.4630e-01)	Acc@1  81.84 ( 79.65)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[610/636]	Time  0.500 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.2242e-01 (4.4626e-01)	Acc@1  81.62 ( 79.66)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[611/636]	Time  0.500 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.2339e-01 (4.4622e-01)	Acc@1  80.90 ( 79.66)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[612/636]	Time  0.500 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.1380e-01 (4.4617e-01)	Acc@1  81.70 ( 79.66)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[613/636]	Time  0.501 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.1371e-01 (4.4612e-01)	Acc@1  81.49 ( 79.66)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[614/636]	Time  0.501 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.1995e-01 (4.4607e-01)	Acc@1  80.82 ( 79.67)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[615/636]	Time  0.501 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.1418e-01 (4.4602e-01)	Acc@1  81.99 ( 79.67)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[616/636]	Time  0.500 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.1706e-01 (4.4597e-01)	Acc@1  81.40 ( 79.67)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[617/636]	Time  0.501 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.0968e-01 (4.4592e-01)	Acc@1  81.82 ( 79.68)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[618/636]	Time  0.501 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.2608e-01 (4.4588e-01)	Acc@1  81.37 ( 79.68)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[619/636]	Time  0.501 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.0687e-01 (4.4582e-01)	Acc@1  82.10 ( 79.68)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[620/636]	Time  0.501 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.2142e-01 (4.4578e-01)	Acc@1  81.12 ( 79.69)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[621/636]	Time  0.501 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.1639e-01 (4.4573e-01)	Acc@1  82.01 ( 79.69)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[622/636]	Time  0.501 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.1474e-01 (4.4568e-01)	Acc@1  81.84 ( 79.69)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[623/636]	Time  0.501 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.3279e-01 (4.4566e-01)	Acc@1  80.55 ( 79.69)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[624/636]	Time  0.501 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.2538e-01 (4.4563e-01)	Acc@1  81.15 ( 79.70)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[625/636]	Time  0.501 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.1993e-01 (4.4559e-01)	Acc@1  80.91 ( 79.70)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[626/636]	Time  0.501 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.2116e-01 (4.4555e-01)	Acc@1  81.81 ( 79.70)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[627/636]	Time  0.501 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.2620e-01 (4.4552e-01)	Acc@1  80.92 ( 79.70)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[628/636]	Time  0.501 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.1965e-01 (4.4548e-01)	Acc@1  81.30 ( 79.71)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[629/636]	Time  0.501 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.1517e-01 (4.4543e-01)	Acc@1  81.38 ( 79.71)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[630/636]	Time  0.500 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.2378e-01 (4.4540e-01)	Acc@1  81.51 ( 79.71)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[631/636]	Time  0.501 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.2439e-01 (4.4536e-01)	Acc@1  81.69 ( 79.71)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[632/636]	Time  0.501 ( 0.523)	Data  0.000 ( 0.007)	Loss 4.1297e-01 (4.4531e-01)	Acc@1  81.41 ( 79.72)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[633/636]	Time  0.501 ( 0.522)	Data  0.000 ( 0.007)	Loss 4.1738e-01 (4.4527e-01)	Acc@1  81.25 ( 79.72)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[634/636]	Time  0.501 ( 0.522)	Data  0.000 ( 0.007)	Loss 4.1976e-01 (4.4523e-01)	Acc@1  81.58 ( 79.72)	Acc@5   0.00 (  0.00)
+Epoch: [0/1]	LR trunk/head: 0.0000200/0.0200000	[635/636]	Time  4.431 ( 0.529)	Data  0.000 ( 0.007)	Loss 4.1652e-01 (4.4519e-01)	Acc@1  81.62 ( 79.73)	Acc@5   0.00 (  0.00)
+Test: [ 0/78]	Time  3.233 ( 3.233)	Loss 4.1553e-01 (4.1553e-01)	Acc@1  81.58 ( 81.58)
+Test: [ 1/78]	Time  0.166 ( 1.699)	Loss 4.2819e-01 (4.2186e-01)	Acc@1  80.90 ( 81.24)
+Test: [ 2/78]	Time  0.166 ( 1.188)	Loss 4.1766e-01 (4.2046e-01)	Acc@1  81.26 ( 81.25)
+Test: [ 3/78]	Time  0.166 ( 0.933)	Loss 4.2494e-01 (4.2158e-01)	Acc@1  80.87 ( 81.15)
+Test: [ 4/78]	Time  0.166 ( 0.779)	Loss 4.2300e-01 (4.2186e-01)	Acc@1  80.84 ( 81.09)
+Test: [ 5/78]	Time  0.166 ( 0.677)	Loss 4.1461e-01 (4.2066e-01)	Acc@1  81.30 ( 81.12)
+Test: [ 6/78]	Time  0.166 ( 0.604)	Loss 4.2549e-01 (4.2135e-01)	Acc@1  80.89 ( 81.09)
+Test: [ 7/78]	Time  0.166 ( 0.549)	Loss 4.4733e-01 (4.2459e-01)	Acc@1  79.70 ( 80.92)
+Test: [ 8/78]	Time  0.167 ( 0.507)	Loss 4.1967e-01 (4.2405e-01)	Acc@1  81.31 ( 80.96)
+Test: [ 9/78]	Time  0.166 ( 0.473)	Loss 4.3431e-01 (4.2507e-01)	Acc@1  80.97 ( 80.96)
+Test: [10/78]	Time  0.166 ( 0.445)	Loss 4.2363e-01 (4.2494e-01)	Acc@1  81.18 ( 80.98)
+Test: [11/78]	Time  0.167 ( 0.422)	Loss 4.1120e-01 (4.2380e-01)	Acc@1  81.34 ( 81.01)
+Test: [12/78]	Time  0.166 ( 0.402)	Loss 4.2017e-01 (4.2352e-01)	Acc@1  81.39 ( 81.04)
+Test: [13/78]	Time  0.166 ( 0.385)	Loss 4.2261e-01 (4.2345e-01)	Acc@1  81.08 ( 81.04)
+Test: [14/78]	Time  0.166 ( 0.371)	Loss 4.1666e-01 (4.2300e-01)	Acc@1  81.00 ( 81.04)
+Test: [15/78]	Time  0.166 ( 0.358)	Loss 4.1510e-01 (4.2251e-01)	Acc@1  80.98 ( 81.04)
+Test: [16/78]	Time  0.166 ( 0.347)	Loss 4.1460e-01 (4.2204e-01)	Acc@1  81.46 ( 81.06)
+Test: [17/78]	Time  0.166 ( 0.337)	Loss 4.2542e-01 (4.2223e-01)	Acc@1  80.70 ( 81.04)
+Test: [18/78]	Time  0.166 ( 0.328)	Loss 4.0716e-01 (4.2144e-01)	Acc@1  81.83 ( 81.08)
+Test: [19/78]	Time  0.166 ( 0.319)	Loss 4.1857e-01 (4.2129e-01)	Acc@1  81.46 ( 81.10)
+Test: [20/78]	Time  0.166 ( 0.312)	Loss 4.1806e-01 (4.2114e-01)	Acc@1  81.25 ( 81.11)
+Test: [21/78]	Time  0.166 ( 0.306)	Loss 4.1497e-01 (4.2086e-01)	Acc@1  81.30 ( 81.12)
+Test: [22/78]	Time  0.166 ( 0.299)	Loss 4.2775e-01 (4.2116e-01)	Acc@1  80.91 ( 81.11)
+Test: [23/78]	Time  0.166 ( 0.294)	Loss 4.2368e-01 (4.2126e-01)	Acc@1  80.74 ( 81.09)
+Test: [24/78]	Time  0.166 ( 0.289)	Loss 4.2566e-01 (4.2144e-01)	Acc@1  81.35 ( 81.10)
+Test: [25/78]	Time  0.166 ( 0.284)	Loss 4.1491e-01 (4.2119e-01)	Acc@1  81.40 ( 81.11)
+Test: [26/78]	Time  0.166 ( 0.280)	Loss 4.1540e-01 (4.2097e-01)	Acc@1  81.73 ( 81.14)
+Test: [27/78]	Time  0.166 ( 0.276)	Loss 4.2847e-01 (4.2124e-01)	Acc@1  81.18 ( 81.14)
+Test: [28/78]	Time  0.166 ( 0.272)	Loss 4.1914e-01 (4.2117e-01)	Acc@1  81.60 ( 81.15)
+Test: [29/78]	Time  0.166 ( 0.268)	Loss 4.1454e-01 (4.2095e-01)	Acc@1  81.67 ( 81.17)
+Test: [30/78]	Time  0.166 ( 0.265)	Loss 4.1755e-01 (4.2084e-01)	Acc@1  81.20 ( 81.17)
+Test: [31/78]	Time  0.166 ( 0.262)	Loss 4.1172e-01 (4.2055e-01)	Acc@1  81.82 ( 81.19)
+Test: [32/78]	Time  0.166 ( 0.259)	Loss 4.0728e-01 (4.2015e-01)	Acc@1  82.12 ( 81.22)
+Test: [33/78]	Time  0.166 ( 0.256)	Loss 4.1443e-01 (4.1998e-01)	Acc@1  81.79 ( 81.24)
+Test: [34/78]	Time  0.166 ( 0.254)	Loss 4.1963e-01 (4.1997e-01)	Acc@1  81.25 ( 81.24)
+Test: [35/78]	Time  0.166 ( 0.251)	Loss 4.1756e-01 (4.1991e-01)	Acc@1  81.88 ( 81.26)
+Test: [36/78]	Time  0.166 ( 0.249)	Loss 4.1132e-01 (4.1967e-01)	Acc@1  81.78 ( 81.27)
+Test: [37/78]	Time  0.166 ( 0.247)	Loss 4.0828e-01 (4.1937e-01)	Acc@1  81.23 ( 81.27)
+Test: [38/78]	Time  0.166 ( 0.245)	Loss 4.2344e-01 (4.1948e-01)	Acc@1  81.15 ( 81.27)
+Test: [39/78]	Time  0.166 ( 0.243)	Loss 4.1518e-01 (4.1937e-01)	Acc@1  81.40 ( 81.27)
+Test: [40/78]	Time  0.166 ( 0.241)	Loss 4.1978e-01 (4.1938e-01)	Acc@1  81.47 ( 81.27)
+Test: [41/78]	Time  0.166 ( 0.239)	Loss 4.1510e-01 (4.1928e-01)	Acc@1  81.36 ( 81.28)
+Test: [42/78]	Time  0.166 ( 0.237)	Loss 4.0526e-01 (4.1895e-01)	Acc@1  82.15 ( 81.30)
+Test: [43/78]	Time  0.166 ( 0.236)	Loss 4.1899e-01 (4.1895e-01)	Acc@1  81.14 ( 81.29)
+Test: [44/78]	Time  0.166 ( 0.234)	Loss 4.2556e-01 (4.1910e-01)	Acc@1  80.94 ( 81.28)
+Test: [45/78]	Time  0.166 ( 0.233)	Loss 4.1999e-01 (4.1912e-01)	Acc@1  81.75 ( 81.29)
+Test: [46/78]	Time  0.166 ( 0.231)	Loss 4.1966e-01 (4.1913e-01)	Acc@1  81.52 ( 81.30)
+Test: [47/78]	Time  0.166 ( 0.230)	Loss 4.2200e-01 (4.1919e-01)	Acc@1  81.19 ( 81.30)
+Test: [48/78]	Time  0.166 ( 0.229)	Loss 4.2323e-01 (4.1927e-01)	Acc@1  81.26 ( 81.30)
+Test: [49/78]	Time  0.166 ( 0.227)	Loss 4.2063e-01 (4.1930e-01)	Acc@1  81.11 ( 81.29)
+Test: [50/78]	Time  0.166 ( 0.226)	Loss 4.1209e-01 (4.1916e-01)	Acc@1  81.50 ( 81.30)
+Test: [51/78]	Time  0.166 ( 0.225)	Loss 4.1781e-01 (4.1913e-01)	Acc@1  81.31 ( 81.30)
+Test: [52/78]	Time  0.166 ( 0.224)	Loss 4.1582e-01 (4.1907e-01)	Acc@1  81.24 ( 81.30)
+Test: [53/78]	Time  0.166 ( 0.223)	Loss 4.1034e-01 (4.1891e-01)	Acc@1  81.76 ( 81.30)
+Test: [54/78]	Time  0.166 ( 0.222)	Loss 4.1836e-01 (4.1890e-01)	Acc@1  81.37 ( 81.31)
+Test: [55/78]	Time  0.166 ( 0.221)	Loss 4.2184e-01 (4.1895e-01)	Acc@1  81.06 ( 81.30)
+Test: [56/78]	Time  0.166 ( 0.220)	Loss 4.1944e-01 (4.1896e-01)	Acc@1  81.51 ( 81.31)
+Test: [57/78]	Time  0.166 ( 0.219)	Loss 4.2462e-01 (4.1906e-01)	Acc@1  80.89 ( 81.30)
+Test: [58/78]	Time  0.166 ( 0.218)	Loss 4.1365e-01 (4.1897e-01)	Acc@1  81.73 ( 81.31)
+Test: [59/78]	Time  0.166 ( 0.217)	Loss 4.0923e-01 (4.1880e-01)	Acc@1  82.08 ( 81.32)
+Test: [60/78]	Time  0.166 ( 0.216)	Loss 4.1784e-01 (4.1879e-01)	Acc@1  81.23 ( 81.32)
+Test: [61/78]	Time  0.166 ( 0.215)	Loss 4.1639e-01 (4.1875e-01)	Acc@1  81.57 ( 81.32)
+Test: [62/78]	Time  0.166 ( 0.215)	Loss 4.0444e-01 (4.1852e-01)	Acc@1  82.37 ( 81.34)
+Test: [63/78]	Time  0.166 ( 0.214)	Loss 4.2660e-01 (4.1865e-01)	Acc@1  80.97 ( 81.33)
+Test: [64/78]	Time  0.166 ( 0.213)	Loss 4.1387e-01 (4.1857e-01)	Acc@1  81.52 ( 81.33)
+Test: [65/78]	Time  0.166 ( 0.212)	Loss 4.1965e-01 (4.1859e-01)	Acc@1  80.95 ( 81.33)
+Test: [66/78]	Time  0.166 ( 0.212)	Loss 4.1744e-01 (4.1857e-01)	Acc@1  81.27 ( 81.33)
+Test: [67/78]	Time  0.166 ( 0.211)	Loss 4.1384e-01 (4.1850e-01)	Acc@1  81.72 ( 81.33)
+Test: [68/78]	Time  0.165 ( 0.210)	Loss 4.1628e-01 (4.1847e-01)	Acc@1  81.04 ( 81.33)
+Test: [69/78]	Time  0.166 ( 0.210)	Loss 4.2952e-01 (4.1863e-01)	Acc@1  80.49 ( 81.32)
+Test: [70/78]	Time  0.166 ( 0.209)	Loss 4.1796e-01 (4.1862e-01)	Acc@1  81.11 ( 81.31)
+Test: [71/78]	Time  0.166 ( 0.209)	Loss 4.2451e-01 (4.1870e-01)	Acc@1  81.39 ( 81.32)
+Test: [72/78]	Time  0.166 ( 0.208)	Loss 4.2248e-01 (4.1875e-01)	Acc@1  80.77 ( 81.31)
+Test: [73/78]	Time  0.166 ( 0.207)	Loss 4.1195e-01 (4.1866e-01)	Acc@1  81.53 ( 81.31)
+Test: [74/78]	Time  0.166 ( 0.207)	Loss 4.1304e-01 (4.1859e-01)	Acc@1  81.48 ( 81.31)
+Test: [75/78]	Time  0.166 ( 0.206)	Loss 4.2767e-01 (4.1871e-01)	Acc@1  80.64 ( 81.30)
+Test: [76/78]	Time  0.166 ( 0.206)	Loss 4.1750e-01 (4.1869e-01)	Acc@1  81.31 ( 81.30)
+Test: [77/78]	Time  1.234 ( 0.219)	Loss 4.1488e-01 (4.1864e-01)	Acc@1  81.21 ( 81.30)
+ * Acc@1 81.304 Loss 0.4186
+Best Acc@1 81.30372706998888 @ epoch 1

@@ -493,19 +493,19 @@ config = {
     "arch": "FRAB",
     "backbone": "resnet50_encoder",
     "workers": 8,
-    "epochs": 2,
+    "epochs": 400,  # 400
     "start_epoch": 0,
     "warmup_epoch": 0,
-    "batch_size": 16,
-    "lr": 0.03,
+    "batch_size": 64,
+    "lr": 1.8,
     "schedule": [120, 160],
     "cos": False,
     "momentum": 0.9,
-    "weight_decay": 1e-4,
+    "weight_decay": 1.5e-6,
     "save_dir": "ckpts",
     "print_freq": 1,
-    "save_freq": 10,
-    "eval_freq": 5,
+    "save_freq": 1,
+    "eval_freq": 1,
     "resume": "",
     "pretrained": "",
     "super_pretrained": "",
@@ -535,3 +535,5 @@ config = {
 if __name__ == '__main__':
     args = Map(config)
     main(args)
+
+# nohup python main_pretraining.py > nohup_pretraining.logs &
