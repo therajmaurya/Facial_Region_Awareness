@@ -293,3 +293,4 @@ if __name__ == '__main__':
     val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=8, shuffle=False, num_workers=8, pin_memory=True, persistent_workers=True)
 
     ss_face_validate(val_loader, model, None)
+    

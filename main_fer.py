@@ -557,6 +557,33 @@ def adjust_learning_rate(optimizer, epoch, args):
 				lr *= 0.1 if epoch >= milestone else 1.
 		param_group['lr'] = lr
 
+class TrainingTimer:
+    def __init__(self):
+        self.start_time = None
+        self.end_time = None
+        self.elapsed_time = None
+
+    def start(self):
+        """Start the timer."""
+        self.start_time = time.time()
+        print("Training started...")
+
+    def stop(self):
+        """Stop the timer and calculate the elapsed time."""
+        self.end_time = time.time()
+        self.elapsed_time = self.end_time - self.start_time
+        print(f"Training completed in {self.format_time(self.elapsed_time)}")
+
+    def format_time(self, seconds):
+        """Format the elapsed time in hours, minutes, and seconds."""
+        hours, rem = divmod(seconds, 3600)
+        minutes, seconds = divmod(rem, 60)
+        print(f"Formatted Time in HH:MM:SS is: {int(hours):02}:{int(minutes):02}:{seconds:.2f}")
+        return f"{int(hours):02}:{int(minutes):02}:{seconds:.2f}"
+
+    def get_elapsed_time(self):
+        """Return the elapsed time in seconds."""
+        return self.elapsed_time
 
 if __name__ == '__main__':
 	opt = parser.parse_args()
@@ -573,7 +600,10 @@ if __name__ == '__main__':
 
 	init_distributed_mode(opt)
 	print(opt)
-
+	tt = TrainingTimer()
+	tt.start()
 	main(opt)
+	tt.stop()
+	tt.format_time(tt.get_elapsed_time())
 
 # nohup python main_fer.py > nohup_fer.logs &

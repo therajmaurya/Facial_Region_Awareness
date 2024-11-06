@@ -454,6 +454,36 @@ def collect_params(model, exclude_bias_and_bn=True, sync_bn=True):
                   {'params': weight_param_list}]
     return param_list
 
+
+class TrainingTimer:
+    def __init__(self):
+        self.start_time = None
+        self.end_time = None
+        self.elapsed_time = None
+
+    def start(self):
+        """Start the timer."""
+        self.start_time = time.time()
+        print("Training started...")
+
+    def stop(self):
+        """Stop the timer and calculate the elapsed time."""
+        self.end_time = time.time()
+        self.elapsed_time = self.end_time - self.start_time
+        print(f"Training completed in {self.format_time(self.elapsed_time)}")
+
+    def format_time(self, seconds):
+        """Format the elapsed time in hours, minutes, and seconds."""
+        hours, rem = divmod(seconds, 3600)
+        minutes, seconds = divmod(rem, 60)
+        print(f"Formatted Time in HH:MM:SS is: {int(hours):02}:{int(minutes):02}:{seconds:.2f}")
+        return f"{int(hours):02}:{int(minutes):02}:{seconds:.2f}"
+
+    def get_elapsed_time(self):
+        """Return the elapsed time in seconds."""
+        return self.elapsed_time
+
+
 class Map(dict):
     """
     Example:
@@ -493,13 +523,13 @@ config = {
     "arch": "FRAB",
     "backbone": "resnet50_encoder",
     "workers": 8,
-    "epochs": 400,  # 400
+    "epochs": 1,  # 400
     "start_epoch": 0,
     "warmup_epoch": 0,
     "batch_size": 64,
     "lr": 1.8,
     "schedule": [120, 160],
-    "cos": False,
+    "cos": True,
     "momentum": 0.9,
     "weight_decay": 1.5e-6,
     "save_dir": "ckpts",
@@ -533,7 +563,16 @@ config = {
 }
 
 if __name__ == '__main__':
+    tt = TrainingTimer()
+    tt.start()
     args = Map(config)
     main(args)
+    tt.stop()
+    tt.format_time(tt.get_elapsed_time())
 
+# TODO:
 # nohup python main_pretraining.py > nohup_pretraining.logs &
+# Monday 2:30 PM PPT; Meet Friday @ 9:30PM for Novely @ Backbone (ViT/other) + Proposal something new (see what other people are working)
+# timeit for each runs
+# Take idea from Khin
+# Submit Report? Check first day PPT

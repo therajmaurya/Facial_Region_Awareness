@@ -80,10 +80,10 @@ parser.add_argument('-b', '--batch-size', default=256, type=int,
                          'batch size of all GPUs on the current node when '
                          'using Data Parallel or Distributed Data Parallel')
 parser.add_argument('--optimizer', default="adamw", type=str, help='[sgd, adamw]')
-parser.add_argument('--lr', '--learning-rate', default=2e-5, type=float,
+parser.add_argument('--lr', '--learning-rate', default=1, type=float,  
                     metavar='LR', help='initial learning rate', dest='lr')
-parser.add_argument("--lr_head", default=0.02, type=float, help="initial learning rate - head")
-parser.add_argument('--min_lr', type=float, default=1e-6, metavar='LR',
+parser.add_argument("--lr_head", default=2e-5, type=float, help="initial learning rate - head")
+parser.add_argument('--min_lr', type=float, default=1e-6, metavar='LR',  
                     help='lower lr bound for cyclic schedulers that hit 0')
 parser.add_argument('--warmup_epochs', type=int, default=5, metavar='N',
                     help='epochs to warmup LR')
@@ -578,6 +578,33 @@ def adjust_learning_rate(optimizer, epoch, args):
 				lr *= 0.1 if epoch >= milestone else 1.
 		param_group['lr'] = lr
 
+class TrainingTimer:
+    def __init__(self):
+        self.start_time = None
+        self.end_time = None
+        self.elapsed_time = None
+
+    def start(self):
+        """Start the timer."""
+        self.start_time = time.time()
+        print("Training started...")
+
+    def stop(self):
+        """Stop the timer and calculate the elapsed time."""
+        self.end_time = time.time()
+        self.elapsed_time = self.end_time - self.start_time
+        print(f"Training completed in {self.format_time(self.elapsed_time)}")
+
+    def format_time(self, seconds):
+        """Format the elapsed time in hours, minutes, and seconds."""
+        hours, rem = divmod(seconds, 3600)
+        minutes, seconds = divmod(rem, 60)
+        print(f"Formatted Time in HH:MM:SS is: {int(hours):02}:{int(minutes):02}:{seconds:.2f}")
+        return f"{int(hours):02}:{int(minutes):02}:{seconds:.2f}"
+
+    def get_elapsed_time(self):
+        """Return the elapsed time in seconds."""
+        return self.elapsed_time
 
 if __name__ == '__main__':
 	opt = parser.parse_args()
@@ -593,7 +620,10 @@ if __name__ == '__main__':
 
 	init_distributed_mode(opt)
 	print(opt)
-
+	tt = TrainingTimer()
+	tt.start()
 	main(opt)
+	tt.stop()
+	tt.format_time(tt.get_elapsed_time())
 
 # nohup python main_far.py > nohup_far.logs &
