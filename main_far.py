@@ -55,9 +55,9 @@ for name in customized_models.__dict__:
 model_names = default_model_names + customized_models_names
 
 parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
-parser.add_argument('--dataset', default='in1k',
+parser.add_argument('--dataset', default='celeba',
                     help='name of dataset')
-parser.add_argument('--data-root', default="",
+parser.add_argument('--data-root', default="data/FAR",
                     help='root of dataset folder')
 parser.add_argument('--trainindex', default=None, type=str, metavar='PATH',
                     help='path to train annotation (default: None)')
@@ -66,11 +66,11 @@ parser.add_argument('-a', '--arch', metavar='ARCH', default='resnet50',
                     help='model architecture: ' +
                         ' | '.join(model_names) +
                         ' (default: resnet50)')
-parser.add_argument('--cls', default=1000, type=int, metavar='N',
+parser.add_argument('--cls', default=40, type=int, metavar='N',
                     help='number of classes')
 parser.add_argument('-j', '--workers', default=32, type=int, metavar='N',
                     help='number of data loading workers (default: 32)')
-parser.add_argument('--epochs', default=100, type=int, metavar='N',
+parser.add_argument('--epochs', default=1, type=int, metavar='N',
                     help='number of total epochs to run')
 parser.add_argument('--start-epoch', default=0, type=int, metavar='N',
                     help='manual epoch number (useful on restarts)')
@@ -211,7 +211,7 @@ def main(args):
 		model_path = "./checkpoints/FaRL-Base-Patch16-LAIONFace20M-ep16.pth"
 		vt = farl.FaRLVisualFeatures(model_type="base", model_path=model_path, forced_input_resolution=224)
 		model = farl.FaRLClsWrapper(vt, num_classes=NUM_CLASSES[args.dataset])
-
+	args.finetune = True # TODO: remove later
 	if not args.finetune:
 		# freeze all layers but the last fc
 		for name, param in model.named_parameters():

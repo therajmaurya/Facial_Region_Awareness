@@ -194,10 +194,10 @@ def main(args):
 
 
     model.cuda()
-    args.batch_size = int(args.batch_size / args.world_size)
-    args.workers = int((args.workers + args.world_size - 1) / args.world_size)
-    model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.gpu])
-
+    # args.batch_size = int(args.batch_size / args.world_size)
+    # args.workers = int((args.workers + args.world_size - 1) / args.world_size)
+    # model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.gpu])
+    
     # define optimizer
     # args.lr = args.batch_size * args.world_size / 1024 * args.lr
     if args.dataset == 'in100':
@@ -256,10 +256,14 @@ def main(args):
         train_dataset = torch.utils.data.Subset(train_dataset, indices)
         print("Sub train_dataset:\n{}".format(len(train_dataset)))
 
-    train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset)
+    # train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset)
+    # train_loader = torch.utils.data.DataLoader(
+    #     train_dataset, batch_size=args.batch_size, shuffle=(train_sampler is None),
+    #     num_workers=args.workers, pin_memory=True, sampler=train_sampler, drop_last=True,
+    #     persistent_workers=True)
     train_loader = torch.utils.data.DataLoader(
-        train_dataset, batch_size=args.batch_size, shuffle=(train_sampler is None),
-        num_workers=args.workers, pin_memory=True, sampler=train_sampler, drop_last=True,
+        train_dataset, batch_size=args.batch_size, shuffle=True,
+        num_workers=args.workers, pin_memory=True, drop_last=True,
         persistent_workers=True)
 
     if args.dataset.lower() == "vggface2":
@@ -271,7 +275,7 @@ def main(args):
             transforms.ToTensor(),
             normalize,
         ])
-        val_dataset = torchvision.datasets.LFWPairs(root="../data/lfw", split="test",
+        val_dataset = torchvision.datasets.LFWPairs(root="data/lfw", split="test",
                                                     transform=transform_test, download=True)
         val_loader = torch.utils.data.DataLoader(
             val_dataset,
@@ -311,7 +315,7 @@ def main(args):
 
     best_epoch = args.start_epoch
     for epoch in range(args.start_epoch, args.epochs):
-        train_sampler.set_epoch(epoch)
+        # train_sampler.set_epoch(epoch)
         if epoch >= args.warmup_epoch:
             lr_schedule.adjust_learning_rate(optimizer, epoch, args)
 
@@ -328,8 +332,9 @@ def main(args):
             if is_best:
                 best_epoch = epoch
 
-        if not args.multiprocessing_distributed or (args.multiprocessing_distributed
-                and args.local_rank % args.world_size == 0):
+        # if not args.multiprocessing_distributed or (args.multiprocessing_distributed
+        #         and args.local_rank % args.world_size == 0):
+        
             utils.save_checkpoint({
                 'epoch': epoch + 1,
                 'arch': args.arch,
@@ -449,23 +454,84 @@ def collect_params(model, exclude_bias_and_bn=True, sync_bn=True):
                   {'params': weight_param_list}]
     return param_list
 
+class Map(dict):
+    """
+    Example:
+    m = Map({'first_name': 'Eduardo'}, last_name='Pool', age=24, sports=['Soccer'])
+    """
+    def __init__(self, *args, **kwargs):
+        super(Map, self).__init__(*args, **kwargs)
+        for arg in args:
+            if isinstance(arg, dict):
+                for k, v in arg.items():
+                    self[k] = v
+
+        if kwargs:
+            for k, v in kwargs.items():
+                self[k] = v
+
+    def __getattr__(self, attr):
+        return self.get(attr)
+
+    def __setattr__(self, key, value):
+        self.__setitem__(key, value)
+
+    def __setitem__(self, key, value):
+        super(Map, self).__setitem__(key, value)
+        self.__dict__.update({key: value})
+
+    def __delattr__(self, item):
+        self.__delitem__(item)
+
+    def __delitem__(self, key):
+        super(Map, self).__delitem__(key)
+        del self.__dict__[key]
+
+config = {
+    "dataset": "vggface2",
+    "data_root": "data/Pre-training/VGGFace2",
+    "arch": "FRAB",
+    "backbone": "resnet50_encoder",
+    "workers": 8,
+    "epochs": 2,
+    "start_epoch": 0,
+    "warmup_epoch": 0,
+    "batch_size": 16,
+    "lr": 0.03,
+    "schedule": [120, 160],
+    "cos": False,
+    "momentum": 0.9,
+    "weight_decay": 1e-4,
+    "save_dir": "ckpts",
+    "print_freq": 1,
+    "save_freq": 10,
+    "eval_freq": 5,
+    "resume": "",
+    "pretrained": "",
+    "super_pretrained": "",
+    "evaluate": False,
+    "seed": 23456,
+    "proj_dim": 256,
+    "enc_m": 0.996,
+    "norm": None, #"BN",
+    "num_neck_mlp": 2,
+    "hid_dim": 4096,
+    "amp": True,
+    "lewel_l2_norm": True,
+    "lewel_scale": 1.0,
+    "lewel_num_heads": 8,
+    "lewel_loss_weight": 0.5,
+    "train_percent": 1.0,
+    "mask_type": "attn",
+    "num_proto": 64,
+    "teacher_temp": 0.07,
+    "loss_w_cluster": 0.5,
+    "num_nn": 20,
+    "nn_mem_percent": 0.1,
+    "nn_query_percent": 0.5,
+    "gpu": "cuda", # None  # cuda
+}
 
 if __name__ == '__main__':
-    opt = parser.parse_args()
-    # opt.distributed = True
-    # opt.multiprocessing_distributed = False
-    # opt.lewel_l2_norm = True
-
-    # opt.arch = "LEWELB"
-    # _, opt.local_rank, opt.world_size = dist_init(opt.port)
-    # cudnn.benchmark = True
-    #
-    # # suppress printing if not master
-    # if dist.get_rank() != 0:
-    #     def print_pass(*args, **kwargs):
-    #         pass
-    #     builtins.print = print_pass
-
-    init_distributed_mode(opt)
-
-    main(opt)
+    args = Map(config)
+    main(args)

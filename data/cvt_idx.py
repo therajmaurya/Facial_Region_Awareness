@@ -1,6 +1,8 @@
 # Copyright Lang Huang (laynehuang@outlook.com). All Rights Reserved.
 # SPDX-License-Identifier: CC-BY-NC-4.0
 
+# https://github.com/LayneH/LEWEL/tree/main/data
+
 import os
 
 if __name__ == "__main__":

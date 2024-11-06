@@ -95,7 +95,7 @@ if __name__ == '__main__':
 	img_dir = "../data/FER/AffectNet/Manually_Annotated_Images"
 	label_dir = '../data/FER/AffectNet/Manually_Annotated_file_lists'
 	split = "train"
-	save_dir = "../data/FER/AffectNet_subset"
+	save_dir = "data/FER/AffectNet_7"
 	# generate_affectnet(img_dir, label_dir, split, save_dir)
 
 	data_root = save_dir
@@ -132,3 +132,5 @@ if __name__ == '__main__':
 			axs.imshow(img)
 			axs.axis("off")
 			plt.show()
+
+# PYTHONPATH=. python data/affectnet.py  # Ran successfully - Need to fix GPU incompatibility issue

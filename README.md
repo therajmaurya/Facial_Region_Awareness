@@ -34,7 +34,7 @@ Download [VGGFace2](https://academictorrents.com/details/535113b8395832f09121bc5
 
 To perform pre-training of the model with ResNet-50 backbone on VGGFace2 with multi-gpu, run:
 ```
-python3 launch.py --device=${DEVICES} --launch main.py \
+python launch.py --device=${DEVICES} --launch main.py \
     --arch FRAB --backbone resnet50_encoder \
     --dataset vggface2 --data-root ${DATA_ROOT} \
     --lr 0.9 -b 512 --wd 0.000001 --epochs 50 --cos --warmup-epoch 10 --workers 16 \

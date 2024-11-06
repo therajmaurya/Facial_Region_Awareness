@@ -199,7 +199,7 @@ class ObjectNeck(nn.Module):
         # projection
         obj_val = self.proj_obj(obj_val)  # (bs, d, q)
 
-        if isTrain:
+        if isTrain and self.mask_type == "attn":
             self.update_proto(mask_embed)
 
         return z_g, obj_val, out  # (bs, d, 1), (bs, d, d//h), where the second dim is channel

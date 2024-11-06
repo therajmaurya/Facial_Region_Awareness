@@ -61,9 +61,9 @@ for name in customized_models.__dict__:
 model_names = default_model_names + customized_models_names
 
 parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
-parser.add_argument('--dataset', default='in1k',
+parser.add_argument('--dataset', default='affectnet7',
                     help='name of dataset')
-parser.add_argument('--data-root', default="",
+parser.add_argument('--data-root', default="data/FER/AffectNet_7",
                     help='root of dataset folder')
 parser.add_argument('--trainindex', default=None, type=str, metavar='PATH',
                     help='path to train annotation (default: None)')
@@ -72,11 +72,11 @@ parser.add_argument('-a', '--arch', metavar='ARCH', default='resnet50',
                     help='model architecture: ' +
                         ' | '.join(model_names) +
                         ' (default: resnet50)')
-parser.add_argument('--cls', default=1000, type=int, metavar='N',
+parser.add_argument('--cls', default=7, type=int, metavar='N',
                     help='number of classes')
 parser.add_argument('-j', '--workers', default=32, type=int, metavar='N',
                     help='number of data loading workers (default: 32)')
-parser.add_argument('--epochs', default=100, type=int, metavar='N',
+parser.add_argument('--epochs', default=1, type=int, metavar='N',
                     help='number of total epochs to run')
 parser.add_argument('--start-epoch', default=0, type=int, metavar='N',
                     help='manual epoch number (useful on restarts)')
@@ -404,6 +404,7 @@ def main(args):
 				)
 		if not args.multiprocessing_distributed or (args.multiprocessing_distributed
 		                                            and args.rank % args.world_size == 0):
+			args.finetune = True  # TODO: remove later
 			if epoch == args.start_epoch and not args.finetune:
 				sanity_check(model.state_dict(), args.pretrained, args)
 
@@ -559,6 +560,7 @@ def adjust_learning_rate(optimizer, epoch, args):
 
 if __name__ == '__main__':
 	opt = parser.parse_args()
+	
 
 	# _, opt.local_rank, opt.world_size = dist_init(opt.port)
 	# cudnn.benchmark = True

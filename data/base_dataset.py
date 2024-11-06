@@ -3,11 +3,14 @@
 
 import os
 import numpy as np
+import torch
 import torch.utils.data as data
 import torchvision.datasets as datasets
 import torchvision.transforms as transforms
 from torchvision.datasets.folder import ImageFolder, default_loader
 from PIL import Image
+import data.transforms as data_transforms
+from tqdm import tqdm
 
 try:
     import mc
@@ -248,3 +251,19 @@ def get_dataset(dataset, mode, transform, data_root=None, **kwargs):
     #     assert os.path.isdir(data_dir)
     #     return ImageFolderWithPercent(data_dir, transform, **kwargs)
 
+# https://github.com/LayneH/LEWEL/blob/main/data/base_dataset.py
+
+if __name__ == "__main__":
+    transform1, transform2 = data_transforms.get_vggface_tranforms(image_size=224)
+    print("Started get_dataset...")
+    dataset = get_dataset("vggface2", "train", data_transforms.TwoCropsTransform(transform1, transform2), data_root="data/Pre-training/VGGFace2")
+    print(dataset)
+    print(dataset[0])
+    loader = torch.utils.data.DataLoader(dataset, batch_size=1, shuffle=False, num_workers=8, pin_memory=True,
+                                         drop_last=False)
+
+    with torch.no_grad():
+        for i, (images, target, _) in enumerate(tqdm(loader)):
+            pass
+
+# PYTHONPATH=. python data/base_dataset.py  # Ran successfully - Need to fix GPU incompatibility issue

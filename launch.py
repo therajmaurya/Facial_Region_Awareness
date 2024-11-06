@@ -28,9 +28,9 @@ def init_workdir():
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Launcher')
-    parser.add_argument('--launch', type=str, default='tools/train.py',
+    parser.add_argument('--launch', type=str, default='main.py',
                         help='Specify launcher script.')
-    parser.add_argument('--dist', type=int, default=1,
+    parser.add_argument('--dist', type=int, default=0,
                         help='Whether start by torch.distributed.launch.')
     parser.add_argument('--np', type=int, default=-1,
                         help='number of processes per node.')
