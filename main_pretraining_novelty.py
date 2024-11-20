@@ -563,7 +563,7 @@ config = {
     "nn_mem_percent": 0.1,
     "nn_query_percent": 0.5,
     "gpu": "cuda", # None  # cuda
-    "generate_multi_scale_heatmaps": False
+    "generate_multi_scale_heatmaps": True
 }
 
 if __name__ == '__main__':
@@ -574,7 +574,7 @@ if __name__ == '__main__':
     tt.stop()
     tt.format_time(tt.get_elapsed_time())
 
-# nohup python main_pretraining.py > nohup_pretraining.logs &
+# nohup python main_pretraining_novelty.py > nohup_pretraining_novelty.logs &
 # nohup python main_far.py > nohup_far.logs &
 # nohup python main_fer.py > nohup_fer.logs &
 

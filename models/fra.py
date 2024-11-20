@@ -53,6 +53,50 @@ def distributed_sinkhorn(Q, num_itr=3, use_dist=True, epsilon=0.05):
     return Q.T
 
 
+import torch
+import torch.nn.functional as F
+
+def generate_multi_scale_heatmaps(feature_map, mask_embeddings, scales=[1, 0.5, 0.25], num_proto=64):
+    """
+    Generate multi-scale heatmaps with consistent channel dimensions.
+
+    Args:
+        feature_map (torch.Tensor): Feature map (batch, channels, height, width).
+        mask_embeddings (torch.Tensor): Mask embeddings (num_proto, channels).
+        scales (list): List of scales at which to compute feature maps.
+        num_proto (int): Number of heatmaps to generate.
+
+    Returns:
+        torch.Tensor: Combined multi-scale heatmap (batch, num_proto, height, width).
+    """
+    # Ensure mask_embeddings have the same channel size as feature_map
+    _, channels, height, width = feature_map.shape
+    if mask_embeddings.shape[1] != channels:
+        mask_embeddings = mask_embeddings[:, :channels]
+
+    multi_scale_heatmaps = []
+    
+    for scale in scales:
+        # Resize feature map for the current scale
+        scaled_feature_map = F.interpolate(feature_map, scale_factor=scale, mode='bilinear', align_corners=False)
+        
+        # Expand dimensions for cosine similarity if needed
+        scaled_feature_map = scaled_feature_map.unsqueeze(1)  # (batch, 1, channels, h, w)
+        mask_embeddings_exp = mask_embeddings[:num_proto].unsqueeze(0).unsqueeze(3).unsqueeze(4)  # (1, num_proto, channels, 1, 1)
+
+        # Compute cosine similarity and ensure dimensions match
+        scaled_heatmap = F.cosine_similarity(scaled_feature_map, mask_embeddings_exp, dim=2)
+
+        # Upsample heatmap to the original feature map size
+        scaled_heatmap_upsampled = F.interpolate(scaled_heatmap, size=(height, width), mode='bilinear', align_corners=False)
+        multi_scale_heatmaps.append(scaled_heatmap_upsampled)
+
+    # Combine heatmaps by averaging
+    combined_heatmap = torch.mean(torch.stack(multi_scale_heatmaps), dim=0)
+    return combined_heatmap
+
+
+
 class MLP1D(nn.Module):
     """
     The non-linear neck in byol: fc-bn-relu-fc
@@ -92,9 +136,11 @@ class ObjectNeck(nn.Module):
                  mask_type="group",
                  num_proto=64,
                  temp=0.07,
+                 generate_multi_scale_heatmaps=False,
                  **kwargs):
         super(ObjectNeck, self).__init__()
-
+        self.num_proto = num_proto
+        self.generate_multi_scale_heatmaps = generate_multi_scale_heatmaps
         self.scale = scale
         self.l2_norm = l2_norm
         assert l2_norm
@@ -118,7 +164,11 @@ class ObjectNeck(nn.Module):
             self.proto_momentum = 0.9
             self.register_buffer("proto", torch.randn(num_proto, out_channels))
             # self.proto = nn.Embedding(num_proto, out_channels)
-    
+            
+        # Projection to match channels if needed
+        if out_channels != num_proto:
+            self.heatmap_projection = nn.Conv2d(num_proto, out_channels, kernel_size=1)
+
     def init_weights(self, init_linear='kaiming'):
         self.proj.init_weights(init_linear)
         self.proj_pixel.init_weights(init_linear)
@@ -149,6 +199,17 @@ class ObjectNeck(nn.Module):
         z_feat = self.proj_pixel(x)
 
         if self.mask_type == "attn":
+            if self.generate_multi_scale_heatmaps:
+                # Generate multi-scale heatmaps using proto as mask embeddings
+                z_feat_reshaped = z_feat.view(b, -1, h, w)
+                combined_heatmap = generate_multi_scale_heatmaps(z_feat_reshaped, self.proto, num_proto=c)
+
+                # Project heatmap to match z_feat_reshaped channels
+                if combined_heatmap.shape[1] != z_feat_reshaped.shape[1]:
+                    combined_heatmap = self.heatmap_projection(combined_heatmap)
+
+                z_feat = combined_heatmap.view(b, -1, h, w)
+            
             z_feat = z_feat.view(b, -1, h, w)
             x = x.view(b, c, h, w)
             # attn_out = self.proj_attn(z_feat, None)

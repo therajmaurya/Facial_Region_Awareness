@@ -76,7 +76,7 @@ parser.add_argument('--cls', default=7, type=int, metavar='N',
                     help='number of classes')
 parser.add_argument('-j', '--workers', default=32, type=int, metavar='N',
                     help='number of data loading workers (default: 32)')
-parser.add_argument('--epochs', default=1, type=int, metavar='N',
+parser.add_argument('--epochs', default=100, type=int, metavar='N',
                     help='number of total epochs to run')  # 100
 parser.add_argument('--start-epoch', default=0, type=int, metavar='N',
                     help='manual epoch number (useful on restarts)')
@@ -130,7 +130,7 @@ parser.add_argument('--multiprocessing_distributed', action='store_true',
                          'fastest way to use PyTorch for either single node or '
                          'multi node data parallel training')
 
-parser.add_argument('--pretrained', default='ckpts/checkpoint.pth.tar', type=str,
+parser.add_argument('--pretrained', default='ckpts/checkpoint_0399.pth.tar', type=str,
                     help='path to self-supervised pretrained checkpoint')
 parser.add_argument('--model-prefix', default='encoder_q', type=str,
                     help='the model prefix of self-supervised pretrained state_dict')
@@ -142,7 +142,7 @@ parser.add_argument('--train-percent', default=1.0, type=float, help='percentage
 parser.add_argument('--model_type', default="ours", type=str, help='type of model')
 parser.add_argument('--image_size', type=int, default=224, help='image size')
 parser.add_argument('--data_norm', default="vggface2", type=str, help='type of data/transformation norm')
-parser.add_argument('--finetune', action='store_true', help='fine-tune downstream backbone')
+parser.add_argument('--finetune', default=True, action='store_true', help='fine-tune downstream backbone')
 
 NUM_CLASSES = {'rafdb': 7, "fer2013": 7, "ferplus": 8, "affectnet7": 7}
 best_acc1 = 0
@@ -404,7 +404,6 @@ def main(args):
 				)
 		if not args.multiprocessing_distributed or (args.multiprocessing_distributed
 		                                            and args.rank % args.world_size == 0):
-			args.finetune = True  # TODO: remove later
 			if epoch == args.start_epoch and not args.finetune:
 				sanity_check(model.state_dict(), args.pretrained, args)
 

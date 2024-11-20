@@ -70,7 +70,7 @@ parser.add_argument('--cls', default=40, type=int, metavar='N',
                     help='number of classes')
 parser.add_argument('-j', '--workers', default=32, type=int, metavar='N',
                     help='number of data loading workers (default: 32)')
-parser.add_argument('--epochs', default=1, type=int, metavar='N',
+parser.add_argument('--epochs', default=100, type=int, metavar='N',
                     help='number of total epochs to run')  # 100
 parser.add_argument('--start-epoch', default=0, type=int, metavar='N',
                     help='manual epoch number (useful on restarts)')
@@ -124,7 +124,7 @@ parser.add_argument('--multiprocessing_distributed', action='store_true',
                          'fastest way to use PyTorch for either single node or '
                          'multi node data parallel training')
 
-parser.add_argument('--pretrained', default='ckpts/checkpoint.pth.tar', type=str,
+parser.add_argument('--pretrained', default='ckpts/checkpoint_0399.pth.tar', type=str,
                     help='path to self-supervised pretrained checkpoint')
 parser.add_argument('--model-prefix', default='encoder_q', type=str,
                     help='the model prefix of self-supervised pretrained state_dict')
@@ -135,7 +135,7 @@ parser.add_argument('--amp', action='store_true', help='use automatic mixed prec
 parser.add_argument('--model_type', default="ours", type=str, help='type of model')
 parser.add_argument('--image_size', type=int, default=224, help='image size')
 parser.add_argument('--data_norm', default="vggface2", type=str, help='type of data/transformation norm')
-parser.add_argument('--finetune', action='store_true', help='fine-tune downstream backbone')
+parser.add_argument('--finetune', default=True, action='store_true', help='fine-tune downstream backbone')
 
 NUM_CLASSES = {'celeba': 40}
 best_acc1 = 0
@@ -211,7 +211,6 @@ def main(args):
 		model_path = "./checkpoints/FaRL-Base-Patch16-LAIONFace20M-ep16.pth"
 		vt = farl.FaRLVisualFeatures(model_type="base", model_path=model_path, forced_input_resolution=224)
 		model = farl.FaRLClsWrapper(vt, num_classes=NUM_CLASSES[args.dataset])
-	args.finetune = True # TODO: remove later
 	if not args.finetune:
 		# freeze all layers but the last fc
 		for name, param in model.named_parameters():
