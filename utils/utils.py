@@ -27,21 +27,21 @@ def load_netowrk(model, path, checkpoint_key="net"):
 
 
 def save_checkpoint(state, is_best, epoch, args, filename='checkpoint.pth.tar'):
-    if args.generate_multi_scale_heatmaps:
-        filename='checkpoint_novelty.pth.tar'
+    if "save_filename_with_suffix" in args and args.save_filename_with_suffix:
+        filename='checkpoint_{args.save_filename_with_suffix}.pth.tar'
     filename = os.path.join(args.save_dir, filename)
     torch.save(state, filename)
     # if is_best:
     #     shutil.copyfile(filename, os.path.join(args.save_dir, 'model_best.pth.tar'))
     if args.save_freq > 0 and (epoch + 1) % args.save_freq == 0:
-        if args.generate_multi_scale_heatmaps:
-	        shutil.copyfile(filename,  os.path.join(args.save_dir, 'checkpoint_novelty_{:04d}.pth.tar'.format(epoch)))
+        if "save_filename_with_suffix" in args and args.save_filename_with_suffix:
+	        shutil.copyfile(filename,  os.path.join(args.save_dir, 'checkpoint_{args.save_filename_with_suffix}_{:04d}.pth.tar'.format(epoch)))
         else:
             shutil.copyfile(filename,  os.path.join(args.save_dir, 'checkpoint_{:04d}.pth.tar'.format(epoch)))
     if not args.cos:
         if (epoch + 1) in args.schedule:
-            if args.generate_multi_scale_heatmaps:
-	            shutil.copyfile(filename,  os.path.join(args.save_dir, 'checkpoint_novelty_{:04d}.pth.tar'.format(epoch)))
+            if "save_filename_with_suffix" in args and args.save_filename_with_suffix:
+	            shutil.copyfile(filename,  os.path.join(args.save_dir, 'checkpoint_{args.save_filename_with_suffix}_{:04d}.pth.tar'.format(epoch)))
             else:
                 shutil.copyfile(filename,  os.path.join(args.save_dir, 'checkpoint_{:04d}.pth.tar'.format(epoch)))
 

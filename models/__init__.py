@@ -3,7 +3,7 @@
 
 from .lewel import LEWELB, LEWELB_EMAN
 from .fra import FRAB, FRAB_EMAN
-
+from .fra_sdmp import FRAB as FRAB_SDMP, FRAB_EMAN as FRAB_EMAN_SDMP
 
 
 def get_model(model):
@@ -20,5 +20,7 @@ def get_model(model):
             "LEWELB_EMAN": LEWELB_EMAN,
             "FRAB": FRAB,
             "FRAB_EMAN": FRAB_EMAN,
+            "FRAB_SDMP": FRAB_SDMP,
+            "FRAB_EMAN_SDMP": FRAB_EMAN_SDMP,
         }[model]
     return model
