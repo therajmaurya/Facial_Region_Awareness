@@ -536,6 +536,7 @@ config = {
     "momentum": 0.9,
     "weight_decay": 1.5e-6,
     "save_dir": "ckpts",
+    "save_filename_with_suffix": "pretraining_original",
     "print_freq": 1,
     "save_freq": 5,  # TODO
     "eval_freq": 1,
