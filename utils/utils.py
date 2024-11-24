@@ -28,20 +28,20 @@ def load_netowrk(model, path, checkpoint_key="net"):
 
 def save_checkpoint(state, is_best, epoch, args, filename='checkpoint.pth.tar'):
     if "save_filename_with_suffix" in args and args.save_filename_with_suffix:
-        filename='checkpoint_{args.save_filename_with_suffix}.pth.tar'
+        filename=f'checkpoint_{args.save_filename_with_suffix}.pth.tar'
     filename = os.path.join(args.save_dir, filename)
     torch.save(state, filename)
     # if is_best:
     #     shutil.copyfile(filename, os.path.join(args.save_dir, 'model_best.pth.tar'))
     if args.save_freq > 0 and (epoch + 1) % args.save_freq == 0:
         if "save_filename_with_suffix" in args and args.save_filename_with_suffix:
-	        shutil.copyfile(filename,  os.path.join(args.save_dir, 'checkpoint_{args.save_filename_with_suffix}_{:04d}.pth.tar'.format(epoch)))
+	        shutil.copyfile(filename,  os.path.join(args.save_dir, 'checkpoint_{}_{:04d}.pth.tar'.format(args.save_filename_with_suffix, epoch)))
         else:
             shutil.copyfile(filename,  os.path.join(args.save_dir, 'checkpoint_{:04d}.pth.tar'.format(epoch)))
     if not args.cos:
         if (epoch + 1) in args.schedule:
             if "save_filename_with_suffix" in args and args.save_filename_with_suffix:
-	            shutil.copyfile(filename,  os.path.join(args.save_dir, 'checkpoint_{args.save_filename_with_suffix}_{:04d}.pth.tar'.format(epoch)))
+	            shutil.copyfile(filename,  os.path.join(args.save_dir, 'checkpoint_{}_{:04d}.pth.tar'.format(args.save_filename_with_suffix, epoch)))
             else:
                 shutil.copyfile(filename,  os.path.join(args.save_dir, 'checkpoint_{:04d}.pth.tar'.format(epoch)))
 
